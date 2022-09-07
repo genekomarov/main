@@ -1,0 +1,20 @@
+[servers_group]
+my_local_linux ansible_host=localhost ansible_user=gbr ansible_password=pKWyaac
+
+# Подключение по ssh ключу
+# ansible_ssh_private_key_file=/path
+
+# Команда для подключения
+# sudo ansible -i hosts.txt all -m ping
+# Параметр для запроса пароля
+# --ask-pass
+
+# Показать inventory в удобном виде
+# ansible-inventory --list
+# --graph
+
+# Информация о серверах
+# sudo ansible all -m setup
+
+# Запустить команду
+# sudo ansible all -m shell -a "команда"
