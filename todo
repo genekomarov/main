@@ -1,0 +1,6 @@
+- установить ansible
+- установить docker, docker compose
+- нода с mongo db
+- нода с rabbit mq
+- нода с nginx
+- нода с python
