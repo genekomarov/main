@@ -1,0 +1,6 @@
+---
+local_group:
+  hosts:
+    local_machine:
+      ansible_host: localhost
+...

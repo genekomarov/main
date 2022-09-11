@@ -8,6 +8,7 @@ my_local_linux ansible_host=localhost ansible_user=gbr ansible_password=pKWyaac
 # sudo ansible -i hosts.txt all -m ping
 # Параметр для запроса пароля
 # --ask-pass
+# --ask-become-pass
 
 # Показать inventory в удобном виде
 # ansible-inventory --list
