@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Page} from '@/Application/page';
+import Page from '@/Application/Page/Page';
 
 function App(): React.JSX.Element {
   return (
