@@ -1,9 +1,8 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Page from '@/Application/Page';
+import {Page} from '@/Application/page';
 
-function App() {
+function App(): React.JSX.Element {
   return (
     <div className="App">
       <Page/>
