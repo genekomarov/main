@@ -10,7 +10,7 @@
       "plugin:@typescript-eslint/recommended"
     ],
     "rules": {
-        "semi":"error",
-        "@typescript-eslint/explicit-function-return-type": "error"
+        "semi":"warn",
+        "@typescript-eslint/explicit-function-return-type": "warn"
     }
   }
