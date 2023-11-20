@@ -3,7 +3,7 @@ import styles from '@/Application/Content/Content.module.scss';
 import Panel from '@/Application/Panel/Panel';
 
 export default function Content(): React.JSX.Element {
-    const [panels, setPanels] = React.useState<{
+    const [panels] = React.useState<{
         [name: string]: () => React.JSX.Element
     }>({
         Panel1: Panel,
