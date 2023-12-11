@@ -1,8 +1,8 @@
 import React from "react";
-import theme from '@/Common/themes/dark/theme.module.scss';
-import WidthProvider from '@/Common/WidthProvider/WidthProvider';
-import FixedStepBlock from "@/Common/FixedStepBlock/FixedStepBlock";
-import Content from "@/Application/Content/Content";
+import theme from 'modules/Common/themes/dark/theme.module.scss';
+import WidthProvider from 'modules/Common/WidthProvider/WidthProvider';
+import FixedStepBlock from "modules/Common/FixedStepBlock/FixedStepBlock";
+import Content from "modules/Application/Content/Content";
 
 interface IState {
     panelCount: number;
