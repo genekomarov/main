@@ -1,6 +1,6 @@
 import React from "react";
-import Panel from "modules/Application/Panel/Panel";
-import PanelOdds from "modules/Application/PanelOdds/PanelOdds";
+import Panel from "components/Application/Panel/Panel";
+import PanelOdds from "components/Application/PanelOdds/PanelOdds";
 
 export default function Content(): React.ReactElement {
     return (
