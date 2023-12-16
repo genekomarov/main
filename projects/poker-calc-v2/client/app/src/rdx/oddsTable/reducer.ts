@@ -5,7 +5,7 @@ import {TAction} from 'rdx/oddsTable/actions';
 const reducer: Reducer<IState, TAction> = (state = defaultState, action) => {
     switch (action.type) {
         case 'TEST1':
-            return {...state, some: state.some + action.payload};
+            return {...state};
         default:
             return state;
     }

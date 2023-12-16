@@ -4,7 +4,7 @@ import oddsTableReducer from 'rdx/oddsTable/reducer';
 import {IState} from 'rdx/oddsTable/state';
 import {IPayloadAction} from 'rdx/interface';
 
-interface IAppState {
+export interface IAppState {
     oddsTable: IState;
 }
 

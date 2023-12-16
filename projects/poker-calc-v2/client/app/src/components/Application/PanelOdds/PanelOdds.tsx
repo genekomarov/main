@@ -1,6 +1,16 @@
 import React from "react";
+import {IOddItem} from 'interface/IOddItem';
+import Header from 'components/Application/PanelOdds/Header/Header';
+import Content from 'components/Application/PanelOdds/Content/Content';
 
-export default function PanelOdds(): React.ReactElement {
+interface IProps {
+    rowNames: string[];
+    items: IOddItem[][];
+}
+
+export default function PanelOdds(props: IProps): React.ReactElement {
+    const {items, rowNames} = props;
+
     return (
         <div
             style={{
@@ -15,27 +25,20 @@ export default function PanelOdds(): React.ReactElement {
 
             <div style={{ backgroundColor: 'black' }} />
 
-            <div style={{ backgroundColor: 'white' }} />
+            <Header
+                names={rowNames}
+            />
 
             <div style={{ backgroundColor: 'black' }} />
 
-            <div style={{ backgroundColor: 'white' }} />
+            <Header
+                names={rowNames}
+                vertical={true}
+            />
 
-            <div style={{
-                backgroundColor: 'white',
-                display: 'grid',
-                gridTemplateColumns: 'repeat(13, 1fr)',
-                gridTemplateRows: 'repeat(13, 1fr)',
-                gap: '1px'
-            }}
-            >
-                {new Array(169).fill(null).map((_, index) => {
-                    return <div
-                        style={{ backgroundColor: 'lightblue' }}
-                        key={index}
-                    />;
-                })}
-            </div>
+            <Content
+                items={items}
+            />
 
             <div style={{ backgroundColor: 'white' }} />
 
