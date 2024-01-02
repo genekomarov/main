@@ -1,3 +1,4 @@
 .bkp
 package-lock.json
 node_modules
+/examples/ts-jest/build
