@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "build:watch": "tsc --watch",
-    "test": "jest",
+    "test": "jest --findRelatedTests .js",
     "ts:init": "tsc --init",
     "eslint:init": "npm init @eslint/config",
     "postinstall": "npm run build"
