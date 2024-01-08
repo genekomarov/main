@@ -43,11 +43,45 @@ export default class BulkOperationsUnit<DATA> extends Unit<DATA> {
 
     private async _getBulk(getMethod: TUniversalGetMethod<DATA>, toFirstLeaf: boolean, parents: string[], params: IGetParamsWitoutParent): Promise<IGetBulkResult<DATA>> {
         const result: IGetBulkResult<DATA> = {};
-        if (!toFirstLeaf) {
-            for (const parent of parents) {
-                result[parent] = await getMethod({...params, parent});
+        for (let i = 0; i < parents.length; i++) {
+            const parent = parents[i];
+            const parentResults = await getMethod({...params, parent});
+            result[parent] = parentResults;
+            if (toFirstLeaf && i === 0 && parentResults) {
+                const deepResults = await this._goDown(parentResults, params);
+                for (const parent in deepResults) {
+                    if (deepResults.hasOwnProperty(parent) && !result.hasOwnProperty(parent)) {
+                        result[parent] = deepResults[parent];
+                    }
+                }
             }
         }
         return result;
     }
+
+    private async _goDown(parentResults: GetResult<DATA>, params: IGetParamsWitoutParent): Promise<IGetBulkResult<DATA>> {
+        const result: IGetBulkResult<DATA> = {};
+        if (!hasLeafs(parentResults)) {
+            const parent = parentResults.items[0].id;
+            const results = await this.get({...params, parent});
+            if (results === null) {
+                return result;
+            }
+            result[parent] = results;
+            const deepResults = await this._goDown(results, params);
+            for (const parent in deepResults) {
+                if (deepResults.hasOwnProperty(parent) && !result.hasOwnProperty(parent)) {
+                    result[parent] = deepResults[parent];
+                }
+            }
+        }
+        return result;
+    }
+}
+
+function hasLeafs<DATA>(getResultData: GetResult<DATA>): boolean {
+    const {items} = getResultData;
+    return !!items.find((item) => {
+        return !item.isFolder;
+    });
 }
