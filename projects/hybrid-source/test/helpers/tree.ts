@@ -6,35 +6,61 @@ type TFolderContent = TFolderContentElement[];
 type TFolder = [number, TFolderContent];
 export type TNode = TFolder | TFolderContent | TFolderContentElement;
 
-export function generateTree(parent: number | null, startId: number | null, node: TNode): IItem<undefined>[] {
+export function generateTree(node: TNode, startId: number, parent: number | null): IItem<undefined>[] {
     const items: IItem<undefined>[] = [];
-    if (Array.isArray(node)) {
-        if (node.length === 2 && typeof node[0] === 'number' && Array.isArray(node[1])) {
+    const nodeType = getNodeType(node);
+    let typedNode: TNode;
+    let id: number;
+    switch (nodeType) {
+        case NODE_TYPE.LEAF:
+            typedNode = node as TLeaf;
             items.push({
                 data: undefined,
                 id: String(startId),
                 parent: String(parent),
-                order: node[0],
+                order: typedNode,
+                isFolder: false
+            });
+            break;
+        case NODE_TYPE.FOLDER:
+            typedNode = node as TFolder;
+            items.push({
+                data: undefined,
+                id: String(startId),
+                parent: String(parent),
+                order: typedNode[0],
                 isFolder: true
             });
-            const id = startId === null ? 0 : startId + 1
-            items.push(...generateTree(startId, id, node[1]));
-        } else {
-            let id = startId ?? 0;
-            node.forEach((subNode) => {
-                const newItems = generateTree(parent, id, subNode);
+            id = startId === null ? 0 : startId + 1
+            items.push(...generateTree(typedNode[1], id, startId));
+            break;
+        case NODE_TYPE.FOLDER_CONTENT:
+            typedNode = node as TFolderContent;
+            id = startId;
+            typedNode.forEach((subNode) => {
+                const newItems = generateTree(subNode, id, parent);
                 items.push(...newItems);
                 id += newItems.length;
             });
-        }
-    } else if (typeof node === 'number') {
-        items.push({
-            data: undefined,
-            id: String(startId),
-            parent: String(parent),
-            order: node,
-            isFolder: false
-        });
+            break;
+        default:
+            break;
     }
     return items;
+}
+
+enum NODE_TYPE {
+    'LEAF',
+    'FOLDER',
+    'FOLDER_CONTENT'
+}
+
+function getNodeType(node: TNode): NODE_TYPE {
+    if (typeof node === 'number') {
+        return NODE_TYPE.LEAF;
+    }
+    if (node.length === 2 && typeof node[0] === 'number' && Array.isArray(node[1])) {
+        return NODE_TYPE.FOLDER;
+    }
+    return NODE_TYPE.FOLDER_CONTENT;
 }
