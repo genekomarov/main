@@ -2,17 +2,19 @@ import 'jest';
 import BaseSource from '../src/BaseSource';
 import BulkOperationsUnit from '../src/BulkOperationsUnit';
 
-describe('CheckEngine/CheckSource/BaseSource', () => {
-    beforeEach(() => {
-        firstUnit = new BulkOperationsUnit();
-        secondUnit = new BulkOperationsUnit();
-        baseSource = new BaseSource<unknown>([firstUnit, secondUnit]);
-    });
-    let firstUnit: BulkOperationsUnit<unknown>;
-    let secondUnit: BulkOperationsUnit<unknown>;
-    let baseSource: BaseSource<unknown>;
+// const set1 = [];
 
-    it('test', () => {
-        return;
+describe('CheckEngine/CheckSource/BaseSource', () => {
+    describe('Один источник', () => {
+        beforeEach(() => {
+            firstUnit = new BulkOperationsUnit();
+            baseSource = new BaseSource<unknown>([firstUnit]);
+        });
+        let firstUnit: BulkOperationsUnit<unknown>;
+        let baseSource: BaseSource<unknown>;
+    
+        it('test', () => {
+            // firstUnit.addBulk(set1, true);
+        });
     });
 });

@@ -6,16 +6,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 require("jest");
 const BaseSource_1 = __importDefault(require("../src/BaseSource"));
 const BulkOperationsUnit_1 = __importDefault(require("../src/BulkOperationsUnit"));
+// const set1 = [];
 describe('CheckEngine/CheckSource/BaseSource', () => {
-    beforeEach(() => {
-        firstUnit = new BulkOperationsUnit_1.default();
-        secondUnit = new BulkOperationsUnit_1.default();
-        baseSource = new BaseSource_1.default([firstUnit, secondUnit]);
-    });
-    let firstUnit;
-    let secondUnit;
-    let baseSource;
-    it('test', () => {
-        return;
+    describe('Один источник', () => {
+        beforeEach(() => {
+            firstUnit = new BulkOperationsUnit_1.default();
+            baseSource = new BaseSource_1.default([firstUnit]);
+        });
+        let firstUnit;
+        let baseSource;
+        it('test', () => {
+            // firstUnit.addBulk(set1, true);
+        });
     });
 });
