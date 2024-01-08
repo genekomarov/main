@@ -2,3 +2,4 @@
 package-lock.json
 node_modules
 /examples/ts-jest/build
+/projects/hybrid-source/build

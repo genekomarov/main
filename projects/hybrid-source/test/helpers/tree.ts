@@ -20,7 +20,7 @@ export function generateTree(parent: number | null, startId: number | null, node
             const id = startId === null ? 0 : startId + 1
             items.push(...generateTree(startId, id, node[1]));
         } else {
-            let id = startId;
+            let id = startId ?? 0;
             node.forEach((subNode) => {
                 const newItems = generateTree(parent, id, subNode);
                 items.push(...newItems);
