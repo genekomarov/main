@@ -1,0 +1,26 @@
+{
+  "name": "poker-odds-engine",
+  "version": "1.0.0",
+  "description": "Engine for poker odds calculations",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "test": "jest",
+    "ts:init": "tsc --init",
+    "eslint:init": "npm init @eslint/config",
+    "postinstall": "npm run build"
+  },
+  "author": "Eugene Komarov",
+  "license": "ISC",
+  "dependencies": {
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.11",
+    "@typescript-eslint/eslint-plugin": "^6.17.0",
+    "@typescript-eslint/parser": "^6.17.0",
+    "eslint": "^8.56.0",
+    "jest": "^29.7.0"
+  }
+}
