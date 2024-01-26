@@ -1,40 +1,158 @@
-enum SUIT {
-    // Буби (Diamonds)
-    D = 'D',
-    // Черви (Hearts)
-    H = 'H',
-    // Крести (Clubs)
-    C = 'C',
-    // Пики (Spades)
-    S = 'S'
-}
+enum SUIT {'D','H','C','S'}
+enum RUNK {'_A', '_K', '_Q', '_J', '_10', '_9', '_8', '_7', '_6', '_5', '_4', '_3', '_2'}
 
-enum RUNK {
-    A = 'A',
-    K = 'K',
-    Q = 'Q',
-    J = 'J',
-    _10 = '10',
-    _9 = '9',
-    _8 = '8',
-    _7 = '7',
-    _6 = '6',
-    _5 = '5',
-    _4 = '4',
-    _3 = '3',
-    _2 = '2'
-}
+type TSuit = keyof typeof SUIT;
+const SUITS = Object.keys(SUIT) as TSuit[];
 
-export default class Card {
-    suit: SUIT;
-    runk: RUNK;
+type TRunk = keyof typeof RUNK;
+const RUNKS = Object.keys(RUNK) as TRunk[];
 
-    constructor(suit: SUIT, runk: RUNK) {
-        this.suit = suit;
-        this.runk = runk;
+
+
+/** Карта */
+export class Card {
+    private _suit: TSuit;
+    private _runk: TRunk;
+
+    constructor(suit: TSuit, runk: TRunk) {
+        this._suit = suit;
+        this._runk = runk;
+    }
+
+    get suit(): TSuit {
+        return this._suit;
+    }
+
+    get runk(): TRunk {
+        return this._runk;
     }
 
     toString(): string {
-        return `${SUIT[this.suit]} ${RUNK[this.runk]}`;
+        return `${this._suit} ${this._runk}`;
     }
 }
+
+interface IDealMap {
+    [cardName: string]: Card;
+}
+
+/** */
+export class Deal {
+
+    private _map: IDealMap = {};
+    private _orders: number[];
+
+    constructor() {
+
+    }
+
+    includes(): boolean {
+
+    }
+
+    shuffle(): void {
+
+    }
+
+    getByCount(count: number): Deal {
+
+    }
+
+    getByCards(cards: Card[]): Deal {
+
+    }
+
+    getCards(): Card[] {
+        return this._orders.map((order) => {
+            return
+        });
+    }
+}
+
+/** Создает колоду */
+function genDeck(): Card[] {
+    const cards: Card[] = [];
+    SUITS.forEach((suit) => {
+        RUNKS.forEach((runk) => {
+            cards.push(new Card(suit, runk));
+        });
+    });
+    return cards;
+}
+
+// /** Масти */
+// const SUITS = ['D', 'H', 'C', 'S'] as const;
+// /** Номиналы */
+// const RUNKS = ['A', 'K', 'Q', 'J', '10', '9', '8', '7', '6', '5', '4', '3', '2'];
+
+
+// enum Some {
+//     'A',
+//     'B'
+// }
+
+// type TSome = keyof typeof Some;
+
+// let a: TSome
+
+// const arr = Object.keys(Some);
+
+
+// /** Тип масти */
+// type TSuit = typeof SUITS[number];
+// /** Тип номинала */
+// type TRunk = typeof RUNKS[number];
+
+// /** Карта */
+// export class Card {
+//     private _suit: TSuit
+//     private _runk: TRunk
+
+//     constructor(suit: TSuit, runk: TRunk) {
+//         this._suit = suit;
+//         this._runk = runk;
+//     }
+
+//     get suit(): TSuit {
+//         return this._suit;
+//     }
+
+//     get runk(): TRunk {
+//         return this._runk;
+//     }
+
+//     toString(): string {
+//         return `${this._suit} ${this._runk}`;
+//     }
+// }
+
+// interface IDealMap {
+//     [card: string]: Card;
+// }
+
+// export class Deal {
+//     private _map: IDealMap = {};
+// }
+
+// export class Deck {
+//     private _deck: Card[] = []
+
+//     constructor() {
+//         SUITS.forEach((suit) => {
+//             RUNKS.forEach((runk) => {
+//                 this._deck.push(new Card(suit, runk))
+//             });
+//         });
+//     }
+
+//     getByCount(count: number): Card[] {
+//         return this._deck.splice(0, count)
+//     }
+
+//     getByCards(cards: Card[]): void {
+//         let deck: Card[] = [...this._deck];
+//         deck = deck.filter((card) => {
+
+//         });
+//     }
+// }
