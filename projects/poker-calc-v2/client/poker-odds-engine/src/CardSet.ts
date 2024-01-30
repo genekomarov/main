@@ -7,6 +7,15 @@ interface ICardsMap {
 export class CardSet implements ICardSet {
     
     private _cards: ICardsMap = {};
+
+    constructor(cards?: ICard[]) {
+        if (!cards) {
+            return;
+        }
+        cards.forEach((card) => {
+            this.push(card);
+        });
+    }
     
     push(card: ICard): void {
         const cardName: string = card.toString();
@@ -37,5 +46,9 @@ export class CardSet implements ICardSet {
 
     get cards(): ICard[] {
         return Object.values(this._cards);
+    }
+
+    get length(): number {
+        return this.cardNames.length;
     }
 }

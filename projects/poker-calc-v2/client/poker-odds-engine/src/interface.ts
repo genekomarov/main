@@ -9,6 +9,7 @@ export interface ICard {
 export interface ICardSet {
     readonly cardNames: string[];
     readonly cards: ICard[];
+    readonly length: number;
     push(card: ICard): void;
     pull(cardName: string): ICard | null;
     includes(cardName: string): boolean;
