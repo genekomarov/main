@@ -43,7 +43,7 @@ export class Deal implements IDeal {
     }
 
     shuffle(): void {
-        
+        this._cardSet.shuffle();
     }
 
     get cardNames(): string[] {

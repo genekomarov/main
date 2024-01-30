@@ -1,4 +1,5 @@
 import {ICardSet, ICard} from 'src/interface';
+import _ from 'lodash';
 
 interface ICardsMap {
     [cardName: string]: ICard;
@@ -38,6 +39,11 @@ export class CardSet implements ICardSet {
 
     includes(cardName: string): boolean {
         return this._cards.hasOwnProperty(cardName);
+    }
+
+    shuffle(): void {
+        const entires = Object.entries(this._cards);
+        this._cards = Object.fromEntries(_.shuffle(entires));
     }
 
     get cardNames(): string[] {

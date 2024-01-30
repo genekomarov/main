@@ -13,6 +13,7 @@ export interface ICardSet {
     push(card: ICard): void;
     pull(cardName: string): ICard | null;
     includes(cardName: string): boolean;
+    shuffle(): void;
 }
 
 export interface IDeal {
