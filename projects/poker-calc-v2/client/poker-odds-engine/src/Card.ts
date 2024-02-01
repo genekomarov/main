@@ -2,7 +2,7 @@ import {TSuit, TRunk} from 'src/consts';
 import {ICard} from 'src/interface';
 
 /** Карта */
-export class Card implements ICard {
+export default class Card implements ICard {
     private _suit: TSuit;
     private _runk: TRunk;
 

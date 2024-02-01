@@ -5,7 +5,7 @@ interface ICardsMap {
     [cardName: string]: ICard;
 }
 
-export class CardSet implements ICardSet {
+export default class CardSet implements ICardSet {
     
     private _cards: ICardsMap = {};
 

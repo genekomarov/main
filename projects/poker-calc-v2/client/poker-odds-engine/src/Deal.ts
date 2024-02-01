@@ -1,7 +1,7 @@
 import {ICard, ICardSet, IDeal} from 'src/interface';
-import {CardSet} from 'src/CardSet';
+import CardSet from 'src/CardSet';
 
-export class Deal implements IDeal {
+export default class Deal implements IDeal {
 
     private readonly _cardSet: ICardSet;
 
