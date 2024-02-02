@@ -1,4 +1,4 @@
-import {TSuit, TRunk} from 'src/consts';
+import {TSuit, TRunk, SUIT, RUNK} from 'src/consts';
 import {ICard} from 'src/interface';
 
 /** Карта */
@@ -6,7 +6,8 @@ export default class Card implements ICard {
     private _suit: TSuit;
     private _runk: TRunk;
 
-    constructor(suit: TSuit, runk: TRunk) {
+    constructor(cardName: string) {
+        const {suit, runk} = this._split(cardName);
         this._suit = suit;
         this._runk = runk;
     }
@@ -20,6 +21,18 @@ export default class Card implements ICard {
     }
 
     toString(): string {
-        return `${this._suit} ${this._runk}`;
+        return `${this._suit}${this._runk}`;
+    }
+
+    private _split(cardName: string): {
+        suit: TSuit,
+        runk: TRunk
+    } {
+        const suit: TSuit = cardName.slice(0, 1) as TSuit;
+        const runk: TRunk = cardName.slice(1, cardName.length) as TRunk;
+        if (!SUIT.hasOwnProperty(suit) || !RUNK.hasOwnProperty(runk)) {
+            throw(new Error(`Неправильное имя карты: ${cardName}`));
+        }
+        return {suit, runk};
     }
 }

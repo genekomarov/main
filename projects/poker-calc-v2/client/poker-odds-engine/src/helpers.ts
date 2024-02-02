@@ -6,7 +6,7 @@ export function genDeck(): Card[] {
     const cards: Card[] = [];
     SUITS.forEach((suit) => {
         RUNKS.forEach((runk) => {
-            cards.push(new Card(suit, runk));
+            cards.push(new Card(`${suit}${runk}`));
         });
     });
     return cards;

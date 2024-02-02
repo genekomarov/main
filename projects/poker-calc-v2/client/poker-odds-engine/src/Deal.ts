@@ -38,6 +38,13 @@ export default class Deal implements IDeal {
         return new Deal(cards);
     }
 
+    push(deal: IDeal): void {
+        const cards: ICard[] = deal.cards;
+        cards.forEach((card) => {
+            this._cardSet.push(card);
+        });
+    }
+
     includes(cardName: string): boolean {
         return this._cardSet.includes(cardName);
     }

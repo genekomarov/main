@@ -22,6 +22,7 @@ export interface IDeal {
     readonly length: number;
     pullCount(count: number): IDeal;
     pullCards(cardNames: string[]): IDeal;
+    push(deal: IDeal): void;
     includes(cardName: string): boolean;
     shuffle(): void;
 }
