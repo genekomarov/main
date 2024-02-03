@@ -5,7 +5,7 @@ export default class Deal implements IDeal {
 
     private readonly _cardSet: ICardSet;
 
-    constructor(cards: ICard[]) {
+    constructor(cards?: ICard[]) {
         this._cardSet = new CardSet(cards);
     }
 
