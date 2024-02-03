@@ -1,2 +1,2 @@
 export {default as Deal} from 'src/_deal/Deal';
-export {TSuit, TRunk} from 'src/_deal/consts';
+export {TSuit, TRunk, TCardName} from 'src/_deal/consts';
