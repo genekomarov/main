@@ -1,4 +1,4 @@
-import {TSuit, TRunk, SUIT, RUNK} from 'src/_deal/consts';
+import {TSuit, TRunk, SUIT, RUNK, TCardName} from 'src/_deal/consts';
 import {ICard} from 'src/_deal/interface';
 
 /** Карта */
@@ -6,7 +6,7 @@ export default class Card implements ICard {
     private _suit: TSuit;
     private _runk: TRunk;
 
-    constructor(cardName: string) {
+    constructor(cardName: TCardName) {
         const {suit, runk} = this._split(cardName);
         this._suit = suit;
         this._runk = runk;
@@ -20,11 +20,11 @@ export default class Card implements ICard {
         return this._runk;
     }
 
-    toString(): string {
+    toString(): TCardName {
         return `${this._suit}${this._runk}`;
     }
 
-    private _split(cardName: string): {
+    private _split(cardName: TCardName): {
         suit: TSuit,
         runk: TRunk
     } {

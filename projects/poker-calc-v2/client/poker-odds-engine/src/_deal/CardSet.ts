@@ -1,4 +1,5 @@
 import {ICardSet, ICard} from 'src/_deal/interface';
+import {TCardName} from 'src/_deal/consts';
 import _ from 'lodash';
 
 interface ICardsMap {
@@ -19,7 +20,7 @@ export default class CardSet implements ICardSet {
     }
     
     push(card: ICard): void {
-        const cardName: string = card.toString();
+        const cardName: TCardName = card.toString();
         if (this.includes(cardName)) {
             throw(new Error(`Карта уже есть в наборе: ${cardName}`));
         } else {
@@ -27,7 +28,7 @@ export default class CardSet implements ICardSet {
         }
     }
 
-    pull(cardName: string): ICard | null {
+    pull(cardName: TCardName): ICard | null {
         if (this.includes(cardName)) {
             const card: ICard = this._cards[cardName];
             delete this._cards[cardName];
@@ -37,7 +38,7 @@ export default class CardSet implements ICardSet {
         }
     }
 
-    includes(cardName: string): boolean {
+    includes(cardName: TCardName): boolean {
         return this._cards.hasOwnProperty(cardName);
     }
 
@@ -46,8 +47,8 @@ export default class CardSet implements ICardSet {
         this._cards = Object.fromEntries(_.shuffle(entires));
     }
 
-    get cardNames(): string[] {
-        return Object.keys(this._cards);
+    get cardNames(): TCardName[] {
+        return Object.keys(this._cards) as unknown as TCardName[];
     }
 
     get cards(): ICard[] {

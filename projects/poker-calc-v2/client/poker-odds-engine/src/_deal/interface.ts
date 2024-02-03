@@ -1,28 +1,28 @@
-import {TSuit, TRunk} from 'src/_deal/consts';
+import {TSuit, TRunk, TCardName} from 'src/_deal/consts';
 
 export interface ICard {
     readonly suit: TSuit;
     readonly runk: TRunk;
-    toString(): string;
+    toString(): TCardName;
 }
 
 export interface ICardSet {
-    readonly cardNames: string[];
+    readonly cardNames: TCardName[];
     readonly cards: ICard[];
     readonly length: number;
     push(card: ICard): void;
-    pull(cardName: string): ICard | null;
-    includes(cardName: string): boolean;
+    pull(cardName: TCardName): ICard | null;
+    includes(cardName: TCardName): boolean;
     shuffle(): void;
 }
 
 export interface IDeal {
-    readonly cardNames: string[];
+    readonly cardNames: TCardName[];
     readonly cards: ICard[];
     readonly length: number;
     pullCount(count: number): IDeal;
-    pullCards(cardNames: string[]): IDeal;
+    pullCards(cardNames: TCardName[]): IDeal;
     push(deal: IDeal): void;
-    includes(cardName: string): boolean;
+    includes(cardName: TCardName): boolean;
     shuffle(): void;
 }

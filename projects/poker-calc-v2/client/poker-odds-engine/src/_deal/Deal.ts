@@ -1,5 +1,6 @@
 import {ICard, ICardSet, IDeal} from 'src/_deal/interface';
 import CardSet from 'src/_deal/CardSet';
+import {TCardName} from 'src/_deal/consts';
 
 export default class Deal implements IDeal {
 
@@ -13,7 +14,7 @@ export default class Deal implements IDeal {
         const cards: ICard[] = [];
         for (let i = 0; i < count; i++) {
             if (this.length) {
-                const cardName: string = this.cardNames[0];
+                const cardName: TCardName = this.cardNames[0];
                 const card: ICard | null = this._cardSet.pull(cardName);
                 if (!card) {
                     break;
@@ -26,10 +27,10 @@ export default class Deal implements IDeal {
         return new Deal(cards);
     }
 
-    pullCards(cardNames: string[]): IDeal {
+    pullCards(cardNames: TCardName[]): IDeal {
         const cards: ICard[] = [];
         for (let i = 0; i < cardNames.length; i++) {
-            const cardName: string = cardNames[i];
+            const cardName: TCardName = cardNames[i];
             const card: ICard | null = this._cardSet.pull(cardName);
             if (card) {
                 cards.push(card);
@@ -45,7 +46,7 @@ export default class Deal implements IDeal {
         });
     }
 
-    includes(cardName: string): boolean {
+    includes(cardName: TCardName): boolean {
         return this._cardSet.includes(cardName);
     }
 
@@ -53,7 +54,7 @@ export default class Deal implements IDeal {
         this._cardSet.shuffle();
     }
 
-    get cardNames(): string[] {
+    get cardNames(): TCardName[] {
         return this._cardSet.cardNames;
     }
 
