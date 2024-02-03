@@ -1,26 +1,33 @@
-import {TCombs} from 'src/_odds/consts';
-import {TCardName} from 'src/deal';
+import {TCombs, TNashKey} from 'src/_odds/consts';
+import {TCardName, ICard} from 'src/deal';
 
-type TCombsMap<T> = {
-    [key in TCombs]: T;
+export type TCombsMap = {
+    [key in TCombs]: number;
 };
 
-interface INashElement {
+export interface INashElement {
     count: number;
-    combs: TCombsMap<number>;
+    combs: TCombsMap;
 }
 
-type TNashChartMap<T> = {
-    [key in TCardName]: T;
+export type TNashChartMap = {
+    [key in TNashKey]: INashElement;
 };
 
-export interface INash {
+export interface INashChart {
     count: number;
-    chart: TNashChartMap<INashElement>;
+    chart: TNashChartMap;
 }
 
 export interface ICalcNashOpts {
-    tableCards: string[];
+    tableCards: TCardName[];
     iterCount: number;
     playersCount: number;
+}
+
+export type THand = [ICard, ICard];
+
+export interface IWinCombResult {
+    hand: THand;
+    comb: TCombs;
 }

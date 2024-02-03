@@ -1,2 +1,4 @@
 export {default as Deal} from 'src/_deal/Deal';
-export {TSuit, TRunk, TCardName} from 'src/_deal/consts';
+export {TSuit, TRunk, TCardName, RUNKS} from 'src/_deal/consts';
+export {genDeck, sortRunks} from 'src/_deal/helpers';
+export {ICard} from 'src/_deal/interface';

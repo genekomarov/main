@@ -1,3 +1,5 @@
+import {TRunk} from 'src/deal';
+
 export const COMB = {
     HighCard: 0,
     OnePair: 1,
@@ -12,4 +14,9 @@ export const COMB = {
 };
 
 export type TCombs = keyof typeof COMB;
-export const SUITS = Object.keys(COMB) as TCombs[];
+export const COMBS = Object.keys(COMB) as TCombs[];
+
+export const SYMILAR = ['o', 'p'] as const;
+export type TSymilar = typeof SYMILAR[number];
+
+export type TNashKey = `${TRunk}${TRunk}${TSymilar}`;
