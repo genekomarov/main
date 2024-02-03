@@ -1,6 +1,6 @@
-import Deal from 'src/Deal';
-import Card from 'src/Card';
-import {genDeck} from 'src/helpers';
+import Deal from 'src/_deal/Deal';
+import Card from 'src/_deal/Card';
+import {genDeck} from 'src/_deal/helpers';
 
 const deck: Card[] = genDeck();
 

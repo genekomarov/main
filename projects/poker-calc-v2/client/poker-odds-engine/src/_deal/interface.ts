@@ -1,4 +1,4 @@
-import {TSuit, TRunk} from 'src/consts';
+import {TSuit, TRunk} from 'src/_deal/consts';
 
 export interface ICard {
     readonly suit: TSuit;

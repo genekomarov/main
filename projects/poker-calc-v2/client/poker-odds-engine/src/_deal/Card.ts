@@ -1,5 +1,5 @@
-import {TSuit, TRunk, SUIT, RUNK} from 'src/consts';
-import {ICard} from 'src/interface';
+import {TSuit, TRunk, SUIT, RUNK} from 'src/_deal/consts';
+import {ICard} from 'src/_deal/interface';
 
 /** Карта */
 export default class Card implements ICard {

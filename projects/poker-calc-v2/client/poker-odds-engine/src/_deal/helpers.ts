@@ -1,5 +1,5 @@
-import {SUITS, RUNKS} from 'src/consts';
-import Card from 'src/Card';
+import {SUITS, RUNKS} from 'src/_deal/consts';
+import Card from 'src/_deal/Card';
 
 /** Создает колоду */
 export function genDeck(): Card[] {

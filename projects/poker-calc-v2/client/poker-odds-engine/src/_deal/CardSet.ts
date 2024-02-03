@@ -1,4 +1,4 @@
-import {ICardSet, ICard} from 'src/interface';
+import {ICardSet, ICard} from 'src/_deal/interface';
 import _ from 'lodash';
 
 interface ICardsMap {
