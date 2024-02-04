@@ -13,8 +13,8 @@ export const COMB = {
     RoyalFlush: 9,
 };
 
-export type TCombs = keyof typeof COMB;
-export const COMBS = Object.keys(COMB) as TCombs[];
+export type TComb = keyof typeof COMB;
+export const COMBS = Object.keys(COMB) as TComb[];
 
 export const SYMILAR = ['o', 'p'] as const;
 export type TSymilar = typeof SYMILAR[number];

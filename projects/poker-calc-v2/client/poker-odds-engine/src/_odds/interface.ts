@@ -1,8 +1,8 @@
-import {TCombs, TNashKey} from 'src/_odds/consts';
+import {TComb, TNashKey} from 'src/_odds/consts';
 import {TCardName, ICard} from 'src/deal';
 
 export type TCombsMap = {
-    [key in TCombs]: number;
+    [key in TComb]: number;
 };
 
 export interface INashElement {
@@ -29,5 +29,5 @@ export type THand = [ICard, ICard];
 
 export interface IWinCombResult {
     hand: THand;
-    comb: TCombs;
+    comb: TComb;
 }
