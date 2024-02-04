@@ -17,6 +17,8 @@ export type TNashChartMap = {
 export interface INashChart {
     count: number;
     chart: TNashChartMap;
+    up(winComb: IWinCombResult): void;
+    getPercent(): void;
 }
 
 export interface ICalcNashOpts {
