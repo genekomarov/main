@@ -5,6 +5,7 @@ import {
 } from 'src/_odds/interface';
 import {TCardName} from 'src/deal';
 import NashChart from 'src/_odds/NashChart';
+import pokerCalc from 'poker-calc';
 
 export function calcNash(opts: ICalcNashOpts, prevNash?: INashChart): INashChart {
     const {tableCards, playersCount, iterCount} = opts;
