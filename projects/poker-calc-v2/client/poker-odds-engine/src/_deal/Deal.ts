@@ -54,6 +54,10 @@ export default class Deal implements IDeal {
         this._cardSet.shuffle();
     }
 
+    clone(): IDeal {
+        return new Deal(this._cardSet.cards);
+    }
+
     get cardNames(): TCardName[] {
         return this._cardSet.cardNames;
     }
