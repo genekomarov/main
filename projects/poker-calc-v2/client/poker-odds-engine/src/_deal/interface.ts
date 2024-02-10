@@ -1,8 +1,8 @@
 import {TSuit, TRunk, TCardName} from 'src/_deal/consts';
 
 export interface ICard {
-    readonly suit: TSuit;
     readonly runk: TRunk;
+    readonly suit: TSuit;
     toString(): TCardName;
 }
 

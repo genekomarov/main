@@ -7,9 +7,9 @@ let deck: Card[];
 export function genDeck(): Card[] {
     if (!deck) {
         const cards: Card[] = [];
-        SUITS.forEach((suit) => {
-            RUNKS.forEach((runk) => {
-                const card = new Card(`${suit}${runk}`);
+        RUNKS.forEach((runk) => {
+            SUITS.forEach((suit) => {
+                const card = new Card(`${runk}${suit}`);
                 Object.freeze(card);
                 cards.push(card);
             });

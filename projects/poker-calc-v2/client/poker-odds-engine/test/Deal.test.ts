@@ -7,17 +7,17 @@ const deck: Card[] = genDeck();
 describe('Deal', () => {
     it('create', () => {
         const wrognCards: Card[] = [
-            new Card('H2'),
-            new Card('D10'),
-            new Card('D10')
+            new Card('2H'),
+            new Card('10D'),
+            new Card('10D')
         ];
         expect(() => {
             new Deal(wrognCards);
         }).toThrow();
         const rightCards: Card[] = [
-            new Card('H2'),
-            new Card('D10'),
-            new Card('SJ')
+            new Card('2H'),
+            new Card('10D'),
+            new Card('JS')
         ];
         expect(() => {
             new Deal(rightCards);
@@ -33,13 +33,13 @@ describe('Deal', () => {
     });
     it('includes', () => {
         const cards: Card[] = [
-            new Card('H2'),
-            new Card('D10'),
-            new Card('SJ')
+            new Card('2H'),
+            new Card('10D'),
+            new Card('JS')
         ];
         const deal = new Deal(cards);
-        expect(deal.includes('H2')).toBe(true);
-        expect(deal.includes('C7')).toBe(false);
+        expect(deal.includes('2H')).toBe(true);
+        expect(deal.includes('7C')).toBe(false);
     });
     it('pullCount', () => {
         const deal = new Deal(deck);
@@ -60,22 +60,22 @@ describe('Deal', () => {
         const deal_0 = deal.pullCards([]);
         expect(deal_0.length).toBe(0);
         expect(deal.length).toBe(52);
-        const deal_2 = deal.pullCards(['H2', 'D10']);
+        const deal_2 = deal.pullCards(['2H', '10D']);
         expect(deal_2.length).toBe(2);
-        expect(deal_2.cardNames).toEqual(['H2', 'D10']);
+        expect(deal_2.cardNames).toEqual(['2H', '10D']);
         expect(deal.length).toBe(50);
     });
     it('pullCards empty', () => {
         const deal = new Deal([]);
-        const deal_2 = deal.pullCards(['H2', 'D10']);
+        const deal_2 = deal.pullCards(['2H', '10D']);
         expect(deal_2.length).toBe(0);
     });
     it('push', () => {
         const deal = new Deal([]);
         const cards: Card[] = [
-            new Card('H2'),
-            new Card('D10'),
-            new Card('SJ')
+            new Card('2H'),
+            new Card('10D'),
+            new Card('JS')
         ];
         deal.push(new Deal(cards));
         expect(deal.length).toBe(3);

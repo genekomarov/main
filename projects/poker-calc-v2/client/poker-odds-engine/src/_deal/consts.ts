@@ -1,10 +1,3 @@
-export const SUIT = {
-    'D': 0,
-    'H': 1,
-    'C': 2,
-    'S': 3
-};
-
 export const RUNK = {
     '2': 0,
     '3': 1,
@@ -21,10 +14,17 @@ export const RUNK = {
     'A': 12,
 };
 
-export type TSuit = keyof typeof SUIT;
-export const SUITS = Object.keys(SUIT) as TSuit[];
+export const SUIT = {
+    'D': 0,
+    'H': 1,
+    'C': 2,
+    'S': 3
+};
 
 export type TRunk = keyof typeof RUNK;
 export const RUNKS = Object.keys(RUNK) as TRunk[];
 
-export type TCardName = `${TSuit}${TRunk}`;
+export type TSuit = keyof typeof SUIT;
+export const SUITS = Object.keys(SUIT) as TSuit[];
+
+export type TCardName = `${TRunk}${TSuit}`;

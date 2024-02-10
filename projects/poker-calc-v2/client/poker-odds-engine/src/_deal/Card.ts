@@ -3,36 +3,37 @@ import {ICard} from 'src/_deal/interface';
 
 /** Карта */
 export default class Card implements ICard {
-    private _suit: TSuit;
     private _runk: TRunk;
+    private _suit: TSuit;
 
     constructor(cardName: TCardName) {
-        const {suit, runk} = this._split(cardName);
-        this._suit = suit;
+        const {runk, suit} = this._split(cardName);
         this._runk = runk;
-    }
-
-    get suit(): TSuit {
-        return this._suit;
+        this._suit = suit;
     }
 
     get runk(): TRunk {
         return this._runk;
     }
 
+    get suit(): TSuit {
+        return this._suit;
+    }
+
     toString(): TCardName {
-        return `${this._suit}${this._runk}`;
+        return `${this._runk}${this._suit}`;
     }
 
     private _split(cardName: TCardName): {
-        suit: TSuit,
-        runk: TRunk
+        runk: TRunk,
+        suit: TSuit
+        
     } {
-        const suit: TSuit = cardName.slice(0, 1) as TSuit;
-        const runk: TRunk = cardName.slice(1, cardName.length) as TRunk;
-        if (!SUIT.hasOwnProperty(suit) || !RUNK.hasOwnProperty(runk)) {
+        const runk: TRunk = cardName.slice(0, cardName.length - 1) as TRunk;
+        const suit: TSuit = cardName.slice(cardName.length -1, cardName.length) as TSuit;
+        if (!RUNK.hasOwnProperty(runk) || !SUIT.hasOwnProperty(suit)) {
             throw(new Error(`Неправильное имя карты: ${cardName}`));
         }
-        return {suit, runk};
+        return {runk, suit};
     }
 }
