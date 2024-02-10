@@ -1,16 +1,16 @@
 import {TRunk} from 'src/deal';
 
 export const COMB = {
-    HighCard: 0,
-    OnePair: 1,
-    TwoPair: 2,
-    ThreeOfaKind: 3,
-    Straight: 4,
-    Flush: 5,
-    FullHouse: 6,
-    FourOfaKind: 7,
-    StraightFlush: 8,
-    RoyalFlush: 9,
+    'High Card': 0,
+    'One Pair': 1,
+    'Two Pair': 2,
+    'Three of a Kind': 3,
+    'Straight': 4,
+    'Flush': 5,
+    'Full House': 6,
+    'Four of a Kind': 7,
+    'Straight Flush': 8,
+    'Royal Flush': 9,
 };
 
 export type TComb = keyof typeof COMB;
@@ -20,3 +20,5 @@ export const SYMILAR = ['o', 'p'] as const;
 export type TSymilar = typeof SYMILAR[number];
 
 export type TNashKey = `${TRunk}${TRunk}${TSymilar}`;
+
+export const TABLE_COUNT = 5;

@@ -25,4 +25,5 @@ export interface IDeal {
     push(deal: IDeal): void;
     includes(cardName: TCardName): boolean;
     shuffle(): void;
+    clone(): IDeal;
 }
