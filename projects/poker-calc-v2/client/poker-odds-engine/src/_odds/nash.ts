@@ -28,5 +28,18 @@ function getWinComb(deal: IDeal, desk: IDeal, playersCount: number): IWinCombRes
     for (let i = 0; i < playersCount; i++) {
         players.push(deal.pullCount(2));
     }
-    
+    const {playerId, hand} = pokerCalc.getHoldemWinner({
+        boardCards: desk.cardNames,
+        playerCards: players.map((player, index) => {
+            return {
+                playerId: String(index),
+                cards: player.cardNames
+            };
+        })
+    }, {compactCards: true})[0];
+    const {type} = hand;
+    return {
+        hand: players[Number(playerId)].cards,
+        comb: type
+    };
 }

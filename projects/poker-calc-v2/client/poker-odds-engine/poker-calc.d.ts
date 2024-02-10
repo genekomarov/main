@@ -3,11 +3,11 @@ import {TComb} from 'src/odds';
 
 interface IPlayerCards {
     playerId: string;
-    cards: [TCardName, TCardName];
+    cards: TCardName[];
 }
 
 interface IGetHoldemWinnerParams {
-    boardCards: [TCardName, TCardName, TCardName, TCardName, TCardName];
+    boardCards: TCardName[];
     playerCards: IPlayerCards[];
 }
 

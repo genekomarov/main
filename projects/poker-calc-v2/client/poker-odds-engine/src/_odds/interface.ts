@@ -27,7 +27,7 @@ export interface ICalcNashOpts {
     playersCount: number;
 }
 
-export type THand = [ICard, ICard];
+export type THand = ICard[];
 
 export interface IWinCombResult {
     hand: THand;
