@@ -1,12 +1,18 @@
 import {TComb, TNashKey} from 'src/_odds/consts';
-import {TCardName, ICard} from 'src/deal';
+import {IWinCombResult} from 'src/_odds/interface/ICalcNash';
+
+export interface ICombElement {
+    count: number;
+    percent: number;
+}
 
 export type TCombsMap = {
-    [key in TComb]: number;
+    [key in TComb]: ICombElement;
 };
 
 export interface INashElement {
     count: number;
+    percent: number;
     combs: TCombsMap;
 }
 
@@ -18,18 +24,5 @@ export interface INashChart {
     count: number;
     chart: TNashChartMap;
     up(winComb: IWinCombResult): void;
-    getPercent(): void;
-}
-
-export interface ICalcNashOpts {
-    tableCards: TCardName[];
-    iterCount: number;
-    playersCount: number;
-}
-
-export type THand = ICard[];
-
-export interface IWinCombResult {
-    hand: THand;
-    comb: TComb;
+    updatePercents(): void;
 }

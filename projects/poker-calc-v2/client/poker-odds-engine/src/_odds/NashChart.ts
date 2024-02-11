@@ -1,13 +1,13 @@
 import {
     INashChart,
     TNashChartMap,
-    INashElement,
     TCombsMap,
-    IWinCombResult,
-    THand
-} from 'src/_odds/interface';
-import {COMBS, SYMILAR, TNashKey, TSymilar} from 'src/_odds/consts';
-import {RUNKS, sortRunks} from 'src/deal';
+    INashElement,
+    ICombElement
+} from 'src/_odds/interface/INashChart';
+import {IWinCombResult, THand} from 'src/_odds/interface/ICalcNash';
+import {COMBS, SYMILAR, TNashKey, TSymilar, TComb} from 'src/_odds/consts';
+import {RUNKS, sortRunks, RUNK} from 'src/deal';
 
 export default class NashChart implements INashChart {
     count: number = 0;
@@ -15,40 +15,53 @@ export default class NashChart implements INashChart {
     
     up(winComb: IWinCombResult): void {
         const {hand, comb} = winComb;
-        const nashKey: TNashKey = handToKey(hand);
+        const key: TNashKey = handToKey(hand);
         this.count ++;
-        const nashElement: INashElement = this.chart[nashKey];
-        nashElement.count ++;
-        nashElement.combs[comb] ++;
+        this.chart[key].count ++;
+        this.chart[key].combs[comb].count ++;
     }
 
-    getPercent(): void {
-        
+    updatePercents(): void {
+        for (const key in this.chart) {
+            if (!this.chart.hasOwnProperty(key)) {
+                return;
+            }
+            const _key: TNashKey = key as TNashKey;
+            const chartElement: INashElement = this.chart[_key];
+            chartElement.percent = chartElement.count / this.count;
+            for (const combKey in chartElement.combs) {
+                if (!chartElement.combs.hasOwnProperty(key)) {
+                    return;
+                }
+                const _combKey: TComb = combKey as TComb;
+                const combElement: ICombElement = chartElement.combs[_combKey];
+                combElement.percent = combElement.count / this.count;
+            }
+        }
     }
-}
-
-class NashElement implements INashElement {
-    count: number = 0;
-    combs: TCombsMap = genCombsMap();
 }
 
 function genNashChartMap(): TNashChartMap {
-    const map = {} as TNashChartMap;
+    const map: TNashChartMap = {} as TNashChartMap;
     RUNKS.forEach((runk_1) => {
         RUNKS.forEach((runk_2) => {
-            SYMILAR.forEach((sym) => {
-                const runks = sortRunks([runk_1, runk_2]);
-                map[`${runks[1]}${runks[0]}${sym}`] = new NashElement();
-            });
-        });
-    });
-    return map;
-}
+            const key: TNashKey = RUNK[runk_1] > RUNK[runk_2]
+                ? `${runk_1}${runk_2}${SYMILAR[0]}`
+                : `${runk_2}${runk_1}${SYMILAR[1]}`;
 
-function genCombsMap(): TCombsMap {
-    const map = {} as TCombsMap;
-    COMBS.forEach((comb) => {
-        map[comb] = 0;
+            const combs: TCombsMap = {} as TCombsMap;
+            COMBS.forEach((comb) => {
+                combs[comb] = {
+                    count: 0,
+                    percent: 0
+                };
+            });
+            map[key] = {
+                count: 0,
+                percent: 0,
+                combs
+            };
+        });
     });
     return map;
 }

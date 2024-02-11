@@ -1,8 +1,5 @@
-import {
-    INashChart,
-    ICalcNashOpts,
-    IWinCombResult
-} from 'src/_odds/interface';
+import {INashChart} from 'src/_odds/interface/INashChart';
+import {ICalcNashOpts, IWinCombResult} from 'src/_odds/interface/ICalcNash';
 import {IDeal, Deal, genDeck} from 'src/deal';
 import NashChart from 'src/_odds/NashChart';
 import {TABLE_COUNT} from 'src/_odds/consts';
