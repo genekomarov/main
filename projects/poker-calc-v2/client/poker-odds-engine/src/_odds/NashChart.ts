@@ -24,14 +24,14 @@ export default class NashChart implements INashChart {
     updatePercents(): void {
         for (const key in this.chart) {
             if (!this.chart.hasOwnProperty(key)) {
-                return;
+                continue;
             }
             const _key: TNashKey = key as TNashKey;
             const chartElement: INashElement = this.chart[_key];
             chartElement.percent = chartElement.count / this.count;
             for (const combKey in chartElement.combs) {
                 if (!chartElement.combs.hasOwnProperty(key)) {
-                    return;
+                    continue;
                 }
                 const _combKey: TComb = combKey as TComb;
                 const combElement: ICombElement = chartElement.combs[_combKey];
@@ -48,11 +48,14 @@ export default class NashChart implements INashChart {
             reversedRunks.forEach((column) => {
                 const key: TNashKey = getNashKey(row, column);
                 const value: number = this.chart[key].percent * 100;
-                const fixedValue = value.toFixed(0);
-                const stringValue = `${new Array(3 - fixedValue.length).fill(' ').join('')}${fixedValue}`;
+                let fixedValue = value.toFixed(0);
+                if (fixedValue === '100') {
+                    fixedValue = '99';
+                }
+                const stringValue = `${new Array(2 - fixedValue.length).fill(' ').join('')}${fixedValue}`;
                 columnArray.push(stringValue);
             });
-            rowArray.push(columnArray.join('_'));
+            rowArray.push(columnArray.join(' '));
         });
         return rowArray.join('\n');
     }

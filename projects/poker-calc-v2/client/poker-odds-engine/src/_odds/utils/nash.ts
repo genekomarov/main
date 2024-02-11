@@ -34,7 +34,8 @@ function getWinComb(deal: IDeal, desk: IDeal, playersCount: number): IWinCombRes
             };
         })
     }, {compactCards: true})[0];
-    const {type} = hand;
+    const {handInfo} = hand;
+    const {type} = handInfo;
     return {
         hand: players[Number(playerId)].cards,
         comb: type

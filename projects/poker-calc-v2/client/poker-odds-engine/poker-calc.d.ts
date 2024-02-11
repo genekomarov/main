@@ -20,10 +20,14 @@ interface IHandInfo {
     strength: number;
 }
 
+interface IHand {
+    handInfo: IHandInfo;
+    cards: [TCardName, TCardName, TCardName, TCardName, TCardName];
+}
+
 interface IGetHoldemWinner {
     playerId: string;
-    hand: IHandInfo;
-    cards: [TCardName, TCardName, TCardName, TCardName, TCardName];
+    hand: IHand;
 }
 
 export function getHoldemWinner(params: IGetHoldemWinnerParams, flags: IFlags): IGetHoldemWinner[];
