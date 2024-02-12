@@ -5,11 +5,11 @@ describe('Nash', () => {
     it('toString', () => {
         const deal = new Deal(genDeck());
         deal.shuffle();
-        const tableCards = deal.pullCount(5).cardNames;
+        const tableCards = deal.pullCount(0).cardNames;
         const chart = calcNash({
             tableCards,
             playersCount: 5,
-            iterCount: 500000
+            iterCount: 100_000_0
         });
         chart.updatePercents();
         console.log(tableCards);

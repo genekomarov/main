@@ -2,7 +2,7 @@ import {INashChart} from 'src/_odds/interface/INashChart';
 import {ICalcNashOpts, IWinCombResult} from 'src/_odds/interface/ICalcNash';
 import {IDeal, Deal, genDeck} from 'src/deal';
 import NashChart from 'src/_odds/NashChart';
-import {TABLE_COUNT} from 'src/_odds/consts';
+import {TABLE_COUNT, TComb} from 'src/_odds/consts';
 import pokerCalc from 'poker-calc';
 
 export function calcNash(opts: ICalcNashOpts, prevNash?: INashChart): INashChart {
@@ -38,6 +38,6 @@ function getWinComb(deal: IDeal, desk: IDeal, playersCount: number): IWinCombRes
     const {type} = handInfo;
     return {
         hand: players[Number(playerId)].cards,
-        comb: type
+        comb: type.toLowerCase() as TComb
     };
 }

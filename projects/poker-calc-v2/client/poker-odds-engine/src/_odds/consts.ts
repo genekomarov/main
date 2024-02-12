@@ -1,16 +1,16 @@
 import {TRunk} from 'src/deal';
 
 export const COMB = {
-    'High Card': 0,
-    'One Pair': 1,
-    'Two Pair': 2,
-    'Three of a Kind': 3,
-    'Straight': 4,
-    'Flush': 5,
-    'Full House': 6,
-    'Four of a Kind': 7,
-    'Straight Flush': 8,
-    'Royal Flush': 9,
+    'high card': 0,
+    'one pair': 1,
+    'two pair': 2,
+    'three of a kind': 3,
+    'straight': 4,
+    'flush': 5,
+    'full house': 6,
+    'four of a kind': 7,
+    'straight flush': 8,
+    'royal flush': 9,
 };
 
 export type TComb = keyof typeof COMB;
