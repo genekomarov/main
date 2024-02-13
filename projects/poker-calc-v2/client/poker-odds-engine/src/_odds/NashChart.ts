@@ -18,7 +18,9 @@ export default class NashChart implements INashChart {
         const key: TNashKey = handToKey(hand);
         this.count ++;
         this.chart[key].count ++;
-        this.chart[key].combs[comb].count ++;
+        if (this.chart[key].combs[comb]) {
+            this.chart[key].combs[comb].count ++;
+        }
     }
 
     updatePercents(): void {
