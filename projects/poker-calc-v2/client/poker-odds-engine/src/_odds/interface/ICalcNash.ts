@@ -18,5 +18,5 @@ export type THand = ICard[];
 
 export interface IWinCombResult {
     hand: THand;
-    comb: TComb;
+    comb: TComb | null;
 }

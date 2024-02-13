@@ -25,5 +25,5 @@ export interface INashChart {
     chart: TNashChartMap;
     up(winComb: IWinCombResult): void;
     updatePercents(): void;
-    toString(): string;
+    toString(printKey?: boolean): string;
 }

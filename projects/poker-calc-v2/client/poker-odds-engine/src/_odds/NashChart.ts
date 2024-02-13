@@ -18,7 +18,7 @@ export default class NashChart implements INashChart {
         const key: TNashKey = handToKey(hand);
         this.count ++;
         this.chart[key].count ++;
-        if (this.chart[key].combs[comb]) {
+        if (comb) {
             this.chart[key].combs[comb].count ++;
         }
     }
@@ -42,20 +42,25 @@ export default class NashChart implements INashChart {
         }
     }
 
-    toString(): string {
+    toString(printKey?: boolean): string {
         const reversedRunks = [...RUNKS].reverse();
         const rowArray: string[] = [];
         reversedRunks.forEach((row) => {
             const columnArray: string[] = [];
             reversedRunks.forEach((column) => {
                 const key: TNashKey = getNashKey(row, column);
-                const value: number = this.chart[key].percent * 100;
-                let fixedValue = value.toFixed(0);
-                if (fixedValue === '100') {
-                    fixedValue = '99';
+                if (printKey) {
+                    columnArray.push(key);
+                } else {
+                    const value: number = this.chart[key].percent * 100;
+                    let fixedValue = value.toFixed(0);
+                    if (fixedValue === '100') {
+                        fixedValue = '99';
+                    }
+                    const stringValue = `${new Array(2 - fixedValue.length).fill(' ').join('')}${fixedValue}`;
+                    columnArray.push(stringValue);
                 }
-                const stringValue = `${new Array(2 - fixedValue.length).fill(' ').join('')}${fixedValue}`;
-                columnArray.push(stringValue);
+                
             });
             rowArray.push(columnArray.join(' '));
         });

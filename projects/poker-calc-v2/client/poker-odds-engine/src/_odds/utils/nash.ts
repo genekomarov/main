@@ -13,6 +13,13 @@ export function calcNash_1(opts: IBaseCalcNashOpts, prevNash?: INashChart): INas
     }, prevNash);
 }
 
+export function calcHandPriority(opts: IBaseCalcNashOpts, prevNash?: INashChart): INashChart {
+    return calcNash({
+        ...opts,
+        getWinCombCallback: getDroppedHand
+    }, prevNash);
+}
+
 function calcNash(opts: ICalcNashOpts, prevNash?: INashChart): INashChart {
     const {tableCards, playersCount, iterCount, getWinCombCallback} = opts;
     const nashChart: INashChart = prevNash ?? new NashChart();
@@ -47,5 +54,13 @@ function getWinComb(deal: IDeal, desk: IDeal, playersCount: number): IWinCombRes
     return {
         hand: players[Number(playerId)].cards,
         comb: type.toLowerCase() as TComb
+    };
+}
+
+function getDroppedHand(deal: IDeal): IWinCombResult {
+    deal.shuffle();
+    return {
+        hand: deal.pullCount(2).cards,
+        comb: null
     };
 }
