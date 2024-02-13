@@ -1,4 +1,4 @@
-import {calcNash} from 'src/_odds/utils/nash';
+import {calcNash_1} from 'src/_odds/utils/nash';
 import {Deal, genDeck} from 'src/deal';
 
 describe('Nash', () => {
@@ -6,10 +6,10 @@ describe('Nash', () => {
         const deal = new Deal(genDeck());
         deal.shuffle();
         const tableCards = deal.pullCount(0).cardNames;
-        const chart = calcNash({
+        const chart = calcNash_1({
             tableCards,
             playersCount: 5,
-            iterCount: 100_000_0
+            iterCount: 100_000
         });
         chart.updatePercents();
         console.log(tableCards);
