@@ -3,7 +3,7 @@ import {Deal, genDeck} from 'src/deal';
 import NashChart from 'src/_odds/NashChart';
 
 describe('Nash', () => {
-    
+    /** Генерация чарта */
     it('calcNash_1', () => {
         const deal = new Deal(genDeck());
         deal.shuffle();
@@ -17,7 +17,8 @@ describe('Nash', () => {
         console.log(tableCards);
         console.log(chart.toString());
     });
-
+    
+    /** Вероятность выпадения пар */
     it('calcHandPriority', () => {
         const chart = calcHandPriority({
             tableCards: [],
@@ -27,7 +28,8 @@ describe('Nash', () => {
         chart.updatePercents();
         console.log(chart.toString());
     });
-
+    
+    /** Имена элементов чарта */
     it('nashKey', () => {
         const chart = new NashChart();
         console.log(chart.toString(true));
