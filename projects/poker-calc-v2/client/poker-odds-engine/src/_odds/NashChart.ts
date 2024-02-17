@@ -93,13 +93,13 @@ function genNashChartMap(): TNashChartMap {
 }
 
 function handToKey(hand: THand): TNashKey {
-    const sym: TSymilar = hand[0].suit === hand[1].suit ? 'o' : 's';
+    const sym: TSymilar = hand[0].suit === hand[1].suit ? 's' : 'o';
     const runks = sortRunks([hand[0].runk, hand[1].runk]);
     return `${runks[1]}${runks[0]}${sym}`;
 }
 
 function getNashKey(runk_1: TRunk, runk_2: TRunk): TNashKey {
-    return RUNK[runk_1] > RUNK[runk_2]
-        ? `${runk_1}${runk_2}${SYMILAR[0]}`
-        : `${runk_2}${runk_1}${SYMILAR[1]}`;
+    return RUNK[runk_1] < RUNK[runk_2]
+        ? `${runk_2}${runk_1}${SYMILAR[1]}`
+        : `${runk_1}${runk_2}${SYMILAR[0]}`;
 }
