@@ -16,7 +16,7 @@ export const COMB = {
 export type TComb = keyof typeof COMB;
 export const COMBS = Object.keys(COMB) as TComb[];
 
-export const SYMILAR = ['o', 'p'] as const;
+export const SYMILAR = ['o', 's'] as const;
 export type TSymilar = typeof SYMILAR[number];
 
 export type TNashKey = `${TRunk}${TRunk}${TSymilar}`;
