@@ -50,7 +50,9 @@ export default class NashChart implements INashChart {
             reversedRunks.forEach((column) => {
                 const key: TNashKey = getNashKey(row, column);
                 if (printKey) {
-                    columnArray.push(key);
+                    // FIXME
+                    const replacedKey = key.replace('10', 'T').replace('10', 'T');
+                    columnArray.push(replacedKey);
                 } else {
                     const value: number = this.chart[key].percent * 100;
                     let fixedValue = value.toFixed(0);
