@@ -6,6 +6,7 @@ interface ICardsMap {
     [cardName: string]: ICard;
 }
 
+/** Набор карт, в который можно добавлять и доставать карты по одной */
 export default class CardSet implements ICardSet {
     
     private _cards: ICardsMap = {};

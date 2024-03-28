@@ -1,7 +1,7 @@
 import {TSuit, TRunk, SUIT, RUNK, TCardName} from 'src/_deal/consts';
 import {ICard} from 'src/_deal/interface';
 
-/** Карта */
+/** Одна карта */
 export default class Card implements ICard {
     private _runk: TRunk;
     private _suit: TSuit;

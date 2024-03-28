@@ -2,6 +2,7 @@ import {ICard, ICardSet, IDeal} from 'src/_deal/interface';
 import CardSet from 'src/_deal/CardSet';
 import {TCardName} from 'src/_deal/consts';
 
+/** Раздача. Прокси объект, в которм реализованы режимы массового удаления карт, а также механизм клонирования */
 export default class Deal implements IDeal {
 
     private readonly _cardSet: ICardSet;

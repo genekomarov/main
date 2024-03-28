@@ -1,10 +1,12 @@
 import {SUITS, RUNKS, TRunk, RUNK} from 'src/_deal/consts';
 import Card from 'src/_deal/Card';
 
+/** Полная колода */
 let deck: Card[];
 
 /** Создает колоду */
 export function genDeck(): Card[] {
+    // Делаем так, чтобы колода генерировалась только при первом вызове функции
     if (!deck) {
         const cards: Card[] = [];
         RUNKS.forEach((runk) => {
@@ -20,6 +22,7 @@ export function genDeck(): Card[] {
     return deck;
 }
 
+/** Выполнить сортировку номиналов по возрастанию */
 export function sortRunks(runks: TRunk[]): TRunk[] {
     return runks.sort((runkA, runkB) => {
         const aPow = RUNK[runkA];
