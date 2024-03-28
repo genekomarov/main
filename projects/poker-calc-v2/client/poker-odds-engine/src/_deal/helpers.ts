@@ -23,7 +23,7 @@ export function genDeck(): Card[] {
 }
 
 /** Выполнить сортировку номиналов по возрастанию */
-export function sortRunks(runks: TRunk[]): TRunk[] {
+export function sortRunksUp(runks: TRunk[]): TRunk[] {
     return runks.sort((runkA, runkB) => {
         const aPow = RUNK[runkA];
         const bPow = RUNK[runkB];

@@ -7,7 +7,7 @@ import {
 } from 'src/_odds/interface/INashChart';
 import {IWinCombResult, THand} from 'src/_odds/interface/ICalcNash';
 import {COMBS, SYMILAR, TNashKey, TSymilar, TComb} from 'src/_odds/consts';
-import {RUNKS, sortRunks, RUNK, TRunk} from 'src/deal';
+import {RUNKS, sortRunksUp, RUNK, TRunk} from 'src/deal';
 
 export default class NashChart implements INashChart {
     count: number = 0;
@@ -94,7 +94,7 @@ function genNashChartMap(): TNashChartMap {
 
 function handToKey(hand: THand): TNashKey {
     const sym: TSymilar = hand[0].suit === hand[1].suit ? 's' : 'o';
-    const runks = sortRunks([hand[0].runk, hand[1].runk]);
+    const runks = sortRunksUp([hand[0].runk, hand[1].runk]);
     return `${runks[1]}${runks[0]}${sym}`;
 }
 
