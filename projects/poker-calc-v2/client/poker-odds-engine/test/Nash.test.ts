@@ -1,11 +1,11 @@
 import {calcNash_1, calcHandPriority} from 'src/_odds/utils/nash';
-import {Deal, genDeck} from 'src/deal';
+import {genDeck} from 'src/deal';
 import NashChart from 'src/_odds/NashChart';
 
 describe('Nash', () => {
     /** Генерация чарта */
     it('calcNash_1', () => {
-        const deal = new Deal(genDeck());
+        const deal = genDeck();
         deal.shuffle();
         const tableCards = deal.pullCount(0).cardNames;
         const chart = calcNash_1({

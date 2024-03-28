@@ -1,6 +1,6 @@
 import {INashChart} from 'src/_odds/interface/INashChart';
 import {ICalcNashOpts, IWinCombResult, IBaseCalcNashOpts} from 'src/_odds/interface/ICalcNash';
-import {IDeal, Deal, genDeck} from 'src/deal';
+import {IDeal, genDeck} from 'src/deal';
 import NashChart from 'src/_odds/NashChart';
 import {TABLE_COUNT, TComb} from 'src/_odds/consts';
 import pokerCalc from 'poker-calc';
@@ -23,7 +23,7 @@ export function calcHandPriority(opts: IBaseCalcNashOpts, prevNash?: INashChart)
 function calcNash(opts: ICalcNashOpts, prevNash?: INashChart): INashChart {
     const {tableCards, playersCount, iterCount, getWinCombCallback} = opts;
     const nashChart: INashChart = prevNash ?? new NashChart();
-    const deal: IDeal = new Deal(genDeck());
+    const deal: IDeal = genDeck();
     const desk = deal.pullCards(tableCards);
     for (let i = 0; i < iterCount; i++) {
         const witComb = getWinCombCallback(deal.clone(), desk.clone(), playersCount);

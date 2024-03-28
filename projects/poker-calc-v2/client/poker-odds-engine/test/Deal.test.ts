@@ -1,8 +1,9 @@
 import Deal from 'src/_deal/Deal';
 import Card from 'src/_deal/Card';
+import {ICard} from 'src/_deal/interface';
 import {genDeck} from 'src/_deal/helpers';
 
-const deck: Card[] = genDeck();
+const deck: ICard[] = genDeck().cards;
 
 describe('Deal', () => {
     it('create', () => {

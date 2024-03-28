@@ -1,14 +1,16 @@
 import {SUITS, RUNKS, TRunk, RUNK} from 'src/_deal/consts';
+import {ICard, IDeal} from 'src/_deal/interface';
 import Card from 'src/_deal/Card';
+import Deal from 'src/_deal/Deal';
 
 /** Полная колода */
-let deck: Card[];
+let deck: ICard[];
 
 /** Создает колоду */
-export function genDeck(): Card[] {
+export function genDeck(): IDeal {
     // Делаем так, чтобы колода генерировалась только при первом вызове функции
     if (!deck) {
-        const cards: Card[] = [];
+        const cards: ICard[] = [];
         RUNKS.forEach((runk) => {
             SUITS.forEach((suit) => {
                 const card = new Card(`${runk}${suit}`);
@@ -19,7 +21,7 @@ export function genDeck(): Card[] {
         deck = cards;
         Object.freeze(deck);
     }
-    return deck;
+    return new Deal(deck);
 }
 
 /** Выполнить сортировку номиналов по возрастанию */
