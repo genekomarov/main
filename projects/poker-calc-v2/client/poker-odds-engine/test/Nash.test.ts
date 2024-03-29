@@ -1,5 +1,5 @@
 import {calcNash_1, calcHandPriority} from 'src/_odds/utils/nash';
-import {genDeck} from 'src/meal';
+import {genDeck} from 'src/deal';
 import NashChart from 'src/_odds/NashChart';
 
 describe('Nash', () => {

@@ -1,6 +1,6 @@
 import {INashChart} from 'src/_odds/interface/INashChart';
 import {ICalcNashOpts, IWinCombResult, IBaseCalcNashOpts} from 'src/_odds/interface/ICalcNash';
-import {IDeal, genDeck} from 'src/meal';
+import {IDeal, genDeck} from 'src/deal';
 import NashChart from 'src/_odds/NashChart';
 import {TABLE_COUNT, TComb} from 'src/_odds/consts';
 import pokerCalc from 'poker-calc';

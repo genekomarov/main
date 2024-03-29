@@ -1,4 +1,4 @@
-import {TCardName} from 'src/meal';
+import {TCardName} from 'src/deal';
 import {TComb} from 'src/odds';
 
 interface IPlayerCards {
