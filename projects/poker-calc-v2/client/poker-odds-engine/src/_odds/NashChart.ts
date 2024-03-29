@@ -9,10 +9,12 @@ import {IWinCombResult, THand} from 'src/_odds/interface/ICalcNash';
 import {COMBS, SYMILAR, TNashKey, TSymilar, TComb} from 'src/_odds/consts';
 import {RUNKS, sortRunksUp, RUNK, TRunk} from 'src/deal';
 
+/** Таблица вероятностей */
 export default class NashChart implements INashChart {
     count: number = 0;
     chart: TNashChartMap = genNashChartMap();
     
+    /** Корректирует таблицу при добавлении новых данных */
     up(winComb: IWinCombResult): void {
         const {hand, comb} = winComb;
         const key: TNashKey = handToKey(hand);
@@ -23,6 +25,7 @@ export default class NashChart implements INashChart {
         }
     }
 
+    /** Пересчитывает проценты в таблице */
     updatePercents(): void {
         for (const key in this.chart) {
             if (!this.chart.hasOwnProperty(key)) {
@@ -42,6 +45,7 @@ export default class NashChart implements INashChart {
         }
     }
 
+    /** Напечатать */
     toString(printKey?: boolean): string {
         const reversedRunks = [...RUNKS].reverse();
         const rowArray: string[] = [];
@@ -70,6 +74,7 @@ export default class NashChart implements INashChart {
     }
 }
 
+/** Создает пустую карту для таблицы вероятностей */
 function genNashChartMap(): TNashChartMap {
     const map: TNashChartMap = {} as TNashChartMap;
     RUNKS.forEach((runk_1) => {
@@ -92,12 +97,18 @@ function genNashChartMap(): TNashChartMap {
     return map;
 }
 
+/** Преобразовать руку в ключ таблицы вероятности */
 function handToKey(hand: THand): TNashKey {
     const sym: TSymilar = hand[0].suit === hand[1].suit ? 's' : 'o';
     const runks = sortRunksUp([hand[0].runk, hand[1].runk]);
     return `${runks[1]}${runks[0]}${sym}`;
 }
 
+/**
+ * Получить ключ для таблицы вероятности
+ * @description
+ * Формирует ключи с учетом того, что слева в таблице находятся одинаковые масти, а справа разные
+ */
 function getNashKey(runk_1: TRunk, runk_2: TRunk): TNashKey {
     return RUNK[runk_1] < RUNK[runk_2]
         ? `${runk_2}${runk_1}${SYMILAR[1]}`
