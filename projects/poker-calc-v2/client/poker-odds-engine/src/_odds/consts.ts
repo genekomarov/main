@@ -1,4 +1,4 @@
-import {TRunk} from 'src/deal';
+import {TRunk} from 'src/meal';
 
 export const COMB = {
     'high card': 0,

@@ -1,6 +1,6 @@
-import {TCardName, ICard} from 'src/deal';
+import {TCardName, ICard} from 'src/meal';
 import {TComb} from 'src/_odds/consts';
-import {IDeal} from 'src/deal';
+import {IDeal} from 'src/meal';
 
 export type TGetWinComb = (deal: IDeal, desk: IDeal, playersCount: number) => IWinCombResult;
 

@@ -7,7 +7,7 @@ import {
 } from 'src/_odds/interface/INashChart';
 import {IWinCombResult, THand} from 'src/_odds/interface/ICalcNash';
 import {COMBS, SYMILAR, TNashKey, TSymilar, TComb} from 'src/_odds/consts';
-import {RUNKS, sortRunksUp, RUNK, TRunk} from 'src/deal';
+import {RUNKS, sortRunksUp, RUNK, TRunk} from 'src/meal';
 
 export default class NashChart implements INashChart {
     count: number = 0;
