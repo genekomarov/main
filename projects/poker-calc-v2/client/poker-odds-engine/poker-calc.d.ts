@@ -1,10 +1,5 @@
 import {TCardName} from 'src/deal';
-import {TComb} from 'src/odds';
-
-interface IPlayerCards {
-    playerId: string;
-    cards: TCardName[];
-}
+import {TComb, IPlayerCards} from 'src/odds';
 
 interface IGetHoldemWinnerParams {
     boardCards: TCardName[];

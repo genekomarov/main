@@ -1,4 +1,4 @@
-import {INashChart, INashChartMap, INashElement, IComb} from 'src/_new_odds/interface';
+import {INashChart, INashChartMap, INashElement, IComb, IGameResult} from 'src/_new_odds/interface';
 import {COMBS, TNashKey, SYMILAR} from 'src/_new_odds/consts';
 import {RUNKS, TRunk, RUNK} from 'src/deal';
 
@@ -12,14 +12,15 @@ export default class NashChart implements INashChart {
     
     private _chartMap: INashChartMap = genNashChartMap();
     
-    up(): void {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    up(gameResult: Partial<IGameResult>): void {
         return;
     }
 
     toArray(printKey: boolean): (string | number) [][] {
         return REVERSED_RUNKS.map((runk_1) => {
             return REVERSED_RUNKS.map((runk_2) => {
-                const key: TNashKey = getNashKey(runk_1, runk_2);
+                const key: TNashKey = getNashKeyByRunks(runk_1, runk_2);
                 if (printKey) {
                     return key;
                 } else {
@@ -64,7 +65,7 @@ function genNashChartMap(): INashChartMap {
     nashChartMap.count = 0;
     RUNKS.forEach((runk_1) => {
         RUNKS.forEach((runk_2) => {
-            const key: TNashKey = getNashKey(runk_1, runk_2);
+            const key: TNashKey = getNashKeyByRunks(runk_1, runk_2);
             const nashElement: INashElement = {} as INashElement;
             nashElement.count = 0;
             nashElement.wins = 0;
@@ -85,7 +86,7 @@ function genNashChartMap(): INashChartMap {
  * @description
  * Формирует ключи с учетом того, что слева в таблице находятся одинаковые масти, а справа разные
  */
-function getNashKey(runk_1: TRunk, runk_2: TRunk): TNashKey {
+export function getNashKeyByRunks(runk_1: TRunk, runk_2: TRunk): TNashKey {
     return RUNK[runk_1] > RUNK[runk_2]
         ? `${runk_1}${runk_2}${SYMILAR[1]}`
         : `${runk_2}${runk_1}${SYMILAR[0]}`;
