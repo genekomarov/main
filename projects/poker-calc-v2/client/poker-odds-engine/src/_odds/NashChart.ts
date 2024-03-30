@@ -7,7 +7,8 @@ import {
 } from 'src/_odds/interface/INashChart';
 import {IWinCombResult, THand} from 'src/_odds/interface/ICalcNash';
 import {COMBS, SYMILAR, TNashKey, TSymilar, TComb} from 'src/_odds/consts';
-import {RUNKS, sortRunksUp, RUNK, TRunk} from 'src/deal';
+import {RUNKS, RUNK, TRunk} from 'src/deal';
+import {sortRunksUp} from 'src/_odds/helpers';
 
 /** Таблица вероятностей */
 export default class NashChart implements INashChart {
