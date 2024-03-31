@@ -12,9 +12,15 @@ export default class NashChart implements INashChart {
     
     private _chartMap: INashChartMap = genNashChartMap();
     
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     up(gameResult: Partial<IGameResult>): void {
-        return;
+        Object.entries(gameResult).forEach((entrie) => {
+            const [key, value] = entrie;
+            const nashKey: TNashKey = key as TNashKey;
+            const {count, wins} = value;
+            this._chartMap.count += count;
+            this._chartMap[nashKey].count += count;
+            this._chartMap[nashKey].wins += wins;
+        });
     }
 
     toArray(printKey: boolean): (string | number) [][] {
@@ -25,7 +31,7 @@ export default class NashChart implements INashChart {
                     return key;
                 } else {
                     const {count, wins} = this._chartMap[key];
-                    return count ? (wins / count).toFixed(0) : 99;
+                    return count ? (wins / count).toFixed(0) : 0;
                 }
             });
         });
