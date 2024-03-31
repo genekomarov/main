@@ -3,7 +3,7 @@ import {TCardName} from 'src/deal';
 
 export interface INashChart {
     up(gameResult: Partial<IGameResult>): void;
-    toString(): string;
+    toString(printKey?: boolean): string;
 }
 
 export interface IComb {

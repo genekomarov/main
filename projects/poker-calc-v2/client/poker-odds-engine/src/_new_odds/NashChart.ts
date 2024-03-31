@@ -44,7 +44,7 @@ export default class NashChart implements INashChart {
         rows.push(...REVERSED_RUNKS.map((runk, i) => {
             const prefix = runk + new Array(ROW_SEP_COUNT + 1).fill(' ').join('');
             return prefix + array[i].map((element) => {
-                if (typeof element === 'string') {
+                if (printKey) {
                     return element;
                 } else {
                     const stringElement = element.toString();
