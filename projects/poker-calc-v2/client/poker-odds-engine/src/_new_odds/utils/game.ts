@@ -1,7 +1,8 @@
 import {IGameResult as TGameResult} from 'src/_new_odds/interface';
-import {IDeal, ICard} from 'src/deal';
+import {IDeal, ICard, TCardName} from 'src/deal';
 import pokerCalc from 'poker-calc';
 import {getNashKeyByCards} from 'src/_new_odds/helpers';
+import {TABLE_COUNT} from 'src/_new_odds/consts';
 
 interface IPlayerCardsMap {
     [playerId: string]: {
@@ -12,6 +13,11 @@ interface IPlayerCardsMap {
 
 export function game(deal: IDeal, desk: IDeal, playerCount: number): Partial<TGameResult> {
     deal.shuffle();
+    const tableCardsLength = desk.length;
+    if (tableCardsLength > TABLE_COUNT) {
+        throw(new Error(`Количество карт на столе превышает ${TABLE_COUNT}`));
+    }
+    desk.push(deal.pullCount(TABLE_COUNT - tableCardsLength));
     const playerCardsMap: IPlayerCardsMap = {};
     for (let playerIndex = 0; playerIndex < playerCount; playerIndex++) {
         playerCardsMap[String(playerIndex)] = {
@@ -20,14 +26,14 @@ export function game(deal: IDeal, desk: IDeal, playerCount: number): Partial<TGa
         };
     }
     const result = pokerCalc.getHoldemWinner({
-        boardCards: desk.cardNames,
+        boardCards: desk.cardNames.map((cardName) => cardName.replace('T', '10') as TCardName),
         playerCards: Object.entries(playerCardsMap).map((entrie) => {
             const [playerId, value] = entrie;
             const cardObjects = value.cards;
             const isWin = value.isWin;
             return {
                 playerId,
-                cards: cardObjects.map((cardObject) => cardObject.toString()),
+                cards: cardObjects.map((cardObject) => cardObject.toString().replace('T', '10') as TCardName),
                 isWin
             };
         })

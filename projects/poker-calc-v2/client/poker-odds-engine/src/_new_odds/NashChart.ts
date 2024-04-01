@@ -31,7 +31,7 @@ export default class NashChart implements INashChart {
                     return key;
                 } else {
                     const {count, wins} = this._chartMap[key];
-                    return count ? (wins / count).toFixed(0) : 0;
+                    return count ? (wins / count * 100).toFixed(0) : 0;
                 }
             });
         });
