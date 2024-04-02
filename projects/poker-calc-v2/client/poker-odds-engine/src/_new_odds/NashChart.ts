@@ -1,7 +1,7 @@
 import {INashChart, INashChartMap, INashElement, IComb, IGameResult} from 'src/_new_odds/interface';
 import {COMBS, TNashKey, SYMILAR} from 'src/_new_odds/consts';
 import {RUNKS, TRunk, RUNK} from 'src/deal';
-import {genString, genSpaceString} from 'src/common';
+import {genString, genSpaceString, stringFromArray} from 'src/common';
 
 const COLUMN_SEP_COUNT = 0;
 const ROW_SEP_COUNT = 1;
@@ -44,24 +44,26 @@ export default class NashChart implements INashChart {
         const array = this.toArray(printKey);
         rows.push(...REVERSED_RUNKS.map((runk, i) => {
             const prefix = runk + genSpaceString(ROW_SEP_COUNT + 1);
-            return prefix + array[i].map((element) => {
+            const data = array[i].map((element) => {
                 if (printKey) {
-                    return element;
+                    return element as string;
                 } else {
                     const stringElement = element.toString();
                     return genSpaceString(2 - stringElement.length) + stringElement;
                 }
-            }).join(genSpaceString(ROW_SEP_COUNT));
+            });
+            return prefix + stringFromArray(data, genSpaceString(ROW_SEP_COUNT));
         }));
-        return rows.join('\n' + genString(COLUMN_SEP_COUNT, '\n'));
+        return stringFromArray(rows, '\n' + genString(COLUMN_SEP_COUNT, '\n'));
     }
 
     private _getAnnotationRow(elementLength: number): string {
         const prefix = genSpaceString(ANNOTATION_ELEMENT_LENGTH + ROW_SEP_COUNT);
-        const data = REVERSED_RUNKS.map((runk) => {
+        const runks = REVERSED_RUNKS.map((runk) => {
             const resizedRunk = genSpaceString(elementLength - runk.length) + runk;
             return resizedRunk;
-        }).join(genSpaceString(ROW_SEP_COUNT));
+        });
+        const data = stringFromArray(runks, genSpaceString(ROW_SEP_COUNT));
         return prefix + data;
     }
 }
