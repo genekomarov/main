@@ -1,6 +1,7 @@
 import {INashChart, INashChartMap, INashElement, IComb, IGameResult} from 'src/_new_odds/interface';
 import {COMBS, TNashKey, SYMILAR} from 'src/_new_odds/consts';
 import {RUNKS, TRunk, RUNK} from 'src/deal';
+import {genString, genSpaceString} from 'src/common';
 
 const COLUMN_SEP_COUNT = 0;
 const ROW_SEP_COUNT = 1;
@@ -42,25 +43,25 @@ export default class NashChart implements INashChart {
         rows.push(this._getAnnotationRow(printKey ? 3 : 2));
         const array = this.toArray(printKey);
         rows.push(...REVERSED_RUNKS.map((runk, i) => {
-            const prefix = runk + new Array(ROW_SEP_COUNT + 1).fill(' ').join('');
+            const prefix = runk + genSpaceString(ROW_SEP_COUNT + 1);
             return prefix + array[i].map((element) => {
                 if (printKey) {
                     return element;
                 } else {
                     const stringElement = element.toString();
-                    return new Array(2 - stringElement.length).fill(' ').join('') + stringElement;
+                    return genSpaceString(2 - stringElement.length) + stringElement;
                 }
-            }).join(new Array(ROW_SEP_COUNT).fill(' ').join(''));
+            }).join(genSpaceString(ROW_SEP_COUNT));
         }));
-        return rows.join('\n' + new Array(COLUMN_SEP_COUNT).fill('\n').join(''));
+        return rows.join('\n' + genString(COLUMN_SEP_COUNT, '\n'));
     }
 
     private _getAnnotationRow(elementLength: number): string {
-        const prefix = new Array(ANNOTATION_ELEMENT_LENGTH + ROW_SEP_COUNT).fill(' ').join('');
+        const prefix = genSpaceString(ANNOTATION_ELEMENT_LENGTH + ROW_SEP_COUNT);
         const data = REVERSED_RUNKS.map((runk) => {
-            const resizedRunk = new Array(elementLength - runk.length).fill(' ').join('') + runk;
+            const resizedRunk = genSpaceString(elementLength - runk.length) + runk;
             return resizedRunk;
-        }).join(new Array(ROW_SEP_COUNT).fill(' ').join(''));
+        }).join(genSpaceString(ROW_SEP_COUNT));
         return prefix + data;
     }
 }
