@@ -1,4 +1,4 @@
-import {TNashKey, TComb} from 'src/_new_odds/consts';
+import {TNashKey, TComb} from 'src/_odds/consts';
 import {TCardName} from 'src/deal';
 
 export interface INashChart {

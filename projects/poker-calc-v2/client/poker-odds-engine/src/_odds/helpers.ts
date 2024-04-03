@@ -1,5 +1,5 @@
 import {TRunk, ICard, RUNK} from 'src/deal';
-import {TNashKey, SYMILAR} from 'src/_new_odds/consts';
+import {TNashKey, SYMILAR} from 'src/_odds/consts';
 
 export function getNashKeyByCards(card_1: ICard, card_2: ICard): TNashKey {
     const runk_1 = card_1.runk;

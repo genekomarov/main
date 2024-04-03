@@ -1,7 +1,7 @@
-import NashChart from 'src/_new_odds/NashChart';
-import {INashChart} from 'src/_new_odds/interface';
+import NashChart from 'src/_odds/NashChart';
+import {INashChart} from 'src/_odds/interface';
 import {TCardName, genDeck} from 'src/deal';
-import {game} from 'src/_new_odds/utils/game';
+import {game} from 'src/_odds/utils/game';
 
 interface ICalcNashParams {
     prevNash?: INashChart;

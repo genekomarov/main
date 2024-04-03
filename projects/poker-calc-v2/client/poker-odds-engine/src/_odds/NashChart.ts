@@ -1,5 +1,5 @@
-import {INashChart, INashChartMap, INashElement, IComb, IGameResult} from 'src/_new_odds/interface';
-import {COMBS, TNashKey, SYMILAR} from 'src/_new_odds/consts';
+import {INashChart, INashChartMap, INashElement, IComb, IGameResult} from 'src/_odds/interface';
+import {COMBS, TNashKey, SYMILAR} from 'src/_odds/consts';
 import {RUNKS, TRunk, RUNK} from 'src/deal';
 import {genString, genSpaceString, stringFromArray} from 'src/common';
 
