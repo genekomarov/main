@@ -5,14 +5,16 @@ import {game} from 'src/_odds/utils/game';
 
 /** Параметры для расчета таблицы вероятностей */
 interface ICalcNashParams {
-    /** Таблица вероятностей для дополнения */
-    prevNash?: INashChart;
     /** Карты на столе */
     tableCards: TCardName[];
     /** Количество игроков */
     playerCount: number;
     /** Количество итераций (игр) для расчета */
     iterCount: number;
+    /** Таблица вероятностей для дополнения */
+    prevNash?: INashChart;
+    /** Ограничение вероятности (по умолчанию 100 / playerCount) */
+    threshold?: number;
 }
 
 /** Рассчитать таблицу вероятностей */

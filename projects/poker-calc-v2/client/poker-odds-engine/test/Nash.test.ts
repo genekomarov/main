@@ -6,10 +6,15 @@ describe('Nash', () => {
         const nashChart = calcNash({
             tableCards: [],
             playerCount: 5,
-            iterCount: 10_000
+            iterCount: 10_000,
+            threshold: 40
         });
-        console.log(nashChart.toString(STRING_TYPE_MODE.KEY));
-        console.log(nashChart.toString(STRING_TYPE_MODE.ODD));
+        console.log(nashChart.toString({
+            mode: STRING_TYPE_MODE.KEY
+        }));
+        console.log(nashChart.toString({
+            mode: STRING_TYPE_MODE.ODD
+        }));
         // console.log(nashChart.toString());
     });
 });

@@ -1,4 +1,4 @@
-import { INashChart, INashChartMap, INashElement, IComb, IGameResult } from 'src/_odds/interface';
+import { INashChart, INashChartMap, INashElement, IComb, IGameResult, IToStringParams} from 'src/_odds/interface';
 import { COMBS, TNashKey, SYMILAR, STRING_TYPE_MODE } from 'src/_odds/consts';
 import { RUNKS, TRunk, RUNK } from 'src/deal';
 import { toString } from 'src/_odds/NashChart/helpers/string';
@@ -26,7 +26,8 @@ export default class NashChart implements INashChart {
         });
     }
 
-    toString(mode: STRING_TYPE_MODE = STRING_TYPE_MODE.ODD): string {
+    toString(params?: IToStringParams): string {
+        const mode = params?.mode;
         switch (mode) {
         case STRING_TYPE_MODE.KEY:
             return toString(this._toArray(toKey), 3);

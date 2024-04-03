@@ -1,12 +1,18 @@
 import {TNashKey, TComb, STRING_TYPE_MODE} from 'src/_odds/consts';
 import {TCardName} from 'src/deal';
 
+/** Интерфейс параметров метода toString */
+export interface IToStringParams {
+    mode?: STRING_TYPE_MODE;
+    useThreshold?: boolean; 
+}
+
 /** Интерфейс Таблица веротяностей */
 export interface INashChart {
     /** Применить результат игры */
     up(gameResult: Partial<IGameResult>): void;
     /** Вывести в форме строки */
-    toString(mode?: STRING_TYPE_MODE): string;
+    toString(params?: IToStringParams): string;
 }
 
 /** Интерфейс Счетчики вероятностей для комбинаций */
