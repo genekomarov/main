@@ -1,14 +1,7 @@
 import {INashChart, INashChartMap, INashElement, IComb, IGameResult} from 'src/_odds/interface';
 import {COMBS, TNashKey, SYMILAR} from 'src/_odds/consts';
 import {RUNKS, TRunk, RUNK} from 'src/deal';
-import {genString, genSpaceString, stringFromArray} from 'src/common';
-
-/** Количество разделителей строк */
-const ROW_SEP_COUNT = 0;
-/** Количество разделителей столбцов */
-const COLUMN_SEP_COUNT = 1;
-/** Длина элементов аннотаций */
-const ANNOTATION_ELEMENT_LENGTH = 2;
+import {toString} from 'src/_odds/NashChart/helpers/string';
 
 /** Номиналы карт по убыванию */
 const REVERSED_RUNKS = [...RUNKS].reverse();
@@ -29,7 +22,7 @@ export default class NashChart implements INashChart {
         });
     }
 
-    toArray(printKey: boolean): (string | number) [][] {
+    toArray(printKey: boolean): string[][] {
         return REVERSED_RUNKS.map((runk_1) => {
             return REVERSED_RUNKS.map((runk_2) => {
                 const key: TNashKey = getNashKeyByRunks(runk_1, runk_2);
@@ -37,50 +30,14 @@ export default class NashChart implements INashChart {
                     return key;
                 } else {
                     const {count, wins} = this._chartMap[key];
-                    return count ? (wins / count * 100).toFixed(0) : 0;
+                    return count ? (wins / count * 100).toFixed(0) : 'x';
                 }
             });
         });
     }
 
     toString(printKey: boolean = false): string {
-        const rows: string[] = [];
-
-        // Делаем верхнюю строку с аннотациями
-        rows.push(this._getAnnotationRow(printKey ? 3 : 2));
-
-        // Делаем строки с данными
-        const array = this.toArray(printKey);
-        rows.push(...REVERSED_RUNKS.map((runk, i) => {
-            const prefix = runk + genSpaceString(COLUMN_SEP_COUNT + 1);
-            const data = array[i].map((element) => {
-
-                // Обрабатываем отдельный элемент строки
-                if (printKey) {
-                    return element as string;
-                } else {
-                    const stringElement = element.toString();
-                    return genSpaceString(2 - stringElement.length) + stringElement;
-                }
-            });
-
-            // Навешиваем префикс строки
-            return prefix + stringFromArray(data, genSpaceString(COLUMN_SEP_COUNT));
-        }));
-
-        // Склеиваем все строки
-        return stringFromArray(rows, '\n' + genString(ROW_SEP_COUNT, '\n'));
-    }
-
-    /** Сформировать строку с аннотациями */
-    private _getAnnotationRow(elementLength: number): string {
-        const prefix = genSpaceString(ANNOTATION_ELEMENT_LENGTH + COLUMN_SEP_COUNT);
-        const runks = REVERSED_RUNKS.map((runk) => {
-            const resizedRunk = genSpaceString(elementLength - runk.length) + runk;
-            return resizedRunk;
-        });
-        const data = stringFromArray(runks, genSpaceString(COLUMN_SEP_COUNT));
-        return prefix + data;
+        return toString(this.toArray(printKey), printKey);
     }
 }
 
