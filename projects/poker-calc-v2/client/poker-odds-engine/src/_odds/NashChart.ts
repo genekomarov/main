@@ -45,11 +45,17 @@ export default class NashChart implements INashChart {
 
     toString(printKey: boolean = false): string {
         const rows: string[] = [];
+
+        // Делаем верхнюю строку с аннотациями
         rows.push(this._getAnnotationRow(printKey ? 3 : 2));
+
+        // Делаем строки с данными
         const array = this.toArray(printKey);
         rows.push(...REVERSED_RUNKS.map((runk, i) => {
             const prefix = runk + genSpaceString(COLUMN_SEP_COUNT + 1);
             const data = array[i].map((element) => {
+
+                // Обрабатываем отдельный элемент строки
                 if (printKey) {
                     return element as string;
                 } else {
@@ -57,8 +63,12 @@ export default class NashChart implements INashChart {
                     return genSpaceString(2 - stringElement.length) + stringElement;
                 }
             });
+
+            // Навешиваем префикс строки
             return prefix + stringFromArray(data, genSpaceString(COLUMN_SEP_COUNT));
         }));
+
+        // Склеиваем все строки
         return stringFromArray(rows, '\n' + genString(ROW_SEP_COUNT, '\n'));
     }
 
