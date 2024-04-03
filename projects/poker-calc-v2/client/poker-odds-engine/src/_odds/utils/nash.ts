@@ -13,14 +13,17 @@ interface ICalcNashParams {
     iterCount: number;
     /** Таблица вероятностей для дополнения */
     prevNash?: INashChart;
-    /** Ограничение вероятности (по умолчанию 100 / playerCount) */
+    /** Ограничение вероятности*/
     threshold?: number;
 }
 
 /** Рассчитать таблицу вероятностей */
 export function calcNash(params: ICalcNashParams): INashChart {
-    const {prevNash, tableCards, playerCount, iterCount} = params;
-    const nashChart = prevNash ?? new NashChart();
+    const {prevNash, tableCards, playerCount, iterCount, threshold} = params;
+    const nashChart = prevNash ?? new NashChart({
+        threshold,
+        playerCount
+    });
     const deal = genDeck();
     const desk = deal.pullCards(tableCards);
     for (let iter = 0; iter < iterCount; iter++) {
