@@ -4,6 +4,7 @@ import pokerCalc from 'poker-calc';
 import {getNashKeyByCards} from 'src/_odds/helpers';
 import {TABLE_COUNT} from 'src/_odds/consts';
 
+/** Состояние игры по игракам */
 interface IPlayerCardsMap {
     [playerId: string]: {
         cards: ICard[],
@@ -11,6 +12,7 @@ interface IPlayerCardsMap {
     };
 }
 
+/** Провести одну игру */
 export function game(deal: IDeal, desk: IDeal, playerCount: number): Partial<TGameResult> {
     deal.shuffle();
     const tableCardsLength = desk.length;

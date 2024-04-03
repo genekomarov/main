@@ -3,6 +3,7 @@ import {INashChart} from 'src/_odds/interface';
 import {TCardName, genDeck} from 'src/deal';
 import {game} from 'src/_odds/utils/game';
 
+/** Параметры для расчета таблицы вероятностей */
 interface ICalcNashParams {
     prevNash?: INashChart;
     tableCards: TCardName[];
@@ -10,6 +11,7 @@ interface ICalcNashParams {
     iterCount: number;
 }
 
+/** Рассчитать таблицу вероятностей */
 export function calcNash(params: ICalcNashParams): INashChart {
     const {prevNash, tableCards, playerCount, iterCount} = params;
     const nashChart = prevNash ?? new NashChart();

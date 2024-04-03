@@ -3,12 +3,17 @@ import {COMBS, TNashKey, SYMILAR} from 'src/_odds/consts';
 import {RUNKS, TRunk, RUNK} from 'src/deal';
 import {genString, genSpaceString, stringFromArray} from 'src/common';
 
-const COLUMN_SEP_COUNT = 0;
-const ROW_SEP_COUNT = 1;
+/** Количество разделителей строк */
+const ROW_SEP_COUNT = 0;
+/** Количество разделителей столбцов */
+const COLUMN_SEP_COUNT = 1;
+/** Длина элементов аннотаций */
 const ANNOTATION_ELEMENT_LENGTH = 2;
 
+/** Номиналы карт по убыванию */
 const REVERSED_RUNKS = [...RUNKS].reverse();
 
+/** Таблица вероятностей */
 export default class NashChart implements INashChart {
     
     private _chartMap: INashChartMap = genNashChartMap();
@@ -43,7 +48,7 @@ export default class NashChart implements INashChart {
         rows.push(this._getAnnotationRow(printKey ? 3 : 2));
         const array = this.toArray(printKey);
         rows.push(...REVERSED_RUNKS.map((runk, i) => {
-            const prefix = runk + genSpaceString(ROW_SEP_COUNT + 1);
+            const prefix = runk + genSpaceString(COLUMN_SEP_COUNT + 1);
             const data = array[i].map((element) => {
                 if (printKey) {
                     return element as string;
@@ -52,18 +57,19 @@ export default class NashChart implements INashChart {
                     return genSpaceString(2 - stringElement.length) + stringElement;
                 }
             });
-            return prefix + stringFromArray(data, genSpaceString(ROW_SEP_COUNT));
+            return prefix + stringFromArray(data, genSpaceString(COLUMN_SEP_COUNT));
         }));
-        return stringFromArray(rows, '\n' + genString(COLUMN_SEP_COUNT, '\n'));
+        return stringFromArray(rows, '\n' + genString(ROW_SEP_COUNT, '\n'));
     }
 
+    /** Сформировать строку с аннотациями */
     private _getAnnotationRow(elementLength: number): string {
-        const prefix = genSpaceString(ANNOTATION_ELEMENT_LENGTH + ROW_SEP_COUNT);
+        const prefix = genSpaceString(ANNOTATION_ELEMENT_LENGTH + COLUMN_SEP_COUNT);
         const runks = REVERSED_RUNKS.map((runk) => {
             const resizedRunk = genSpaceString(elementLength - runk.length) + runk;
             return resizedRunk;
         });
-        const data = stringFromArray(runks, genSpaceString(ROW_SEP_COUNT));
+        const data = stringFromArray(runks, genSpaceString(COLUMN_SEP_COUNT));
         return prefix + data;
     }
 }
