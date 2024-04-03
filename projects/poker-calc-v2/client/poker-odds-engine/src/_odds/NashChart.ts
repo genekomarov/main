@@ -2,9 +2,13 @@ import {INashChart, INashChartMap, INashElement, IComb, IGameResult} from 'src/_
 import {COMBS, TNashKey, SYMILAR} from 'src/_odds/consts';
 import {RUNKS, TRunk, RUNK} from 'src/deal';
 import {toString} from 'src/_odds/NashChart/helpers/string';
+import {toOdd} from 'src/_odds/NashChart/helpers/stringNashElementHandlers';
 
 /** Номиналы карт по убыванию */
 const REVERSED_RUNKS = [...RUNKS].reverse();
+
+/** Обработчик преобразования элемента таблицы вероятностей к строке */
+type TArrayHandler = (element: INashElement) => string;
 
 /** Таблица вероятностей */
 export default class NashChart implements INashChart {
@@ -22,22 +26,19 @@ export default class NashChart implements INashChart {
         });
     }
 
-    toArray(printKey: boolean): string[][] {
+    toString(): string {
+        return toString(this._toArray(toOdd), false);
+    }
+
+    /** Получить в виде массива */
+    private _toArray(handler: TArrayHandler): string[][] {
         return REVERSED_RUNKS.map((runk_1) => {
             return REVERSED_RUNKS.map((runk_2) => {
                 const key: TNashKey = getNashKeyByRunks(runk_1, runk_2);
-                if (printKey) {
-                    return key;
-                } else {
-                    const {count, wins} = this._chartMap[key];
-                    return count ? (wins / count * 100).toFixed(0) : 'x';
-                }
+                const element: INashElement = this._chartMap[key];
+                return handler(element);
             });
         });
-    }
-
-    toString(printKey: boolean = false): string {
-        return toString(this.toArray(printKey), printKey);
     }
 }
 

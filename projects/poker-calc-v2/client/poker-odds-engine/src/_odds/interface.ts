@@ -5,8 +5,6 @@ import {TCardName} from 'src/deal';
 export interface INashChart {
     /** Применить результат игры */
     up(gameResult: Partial<IGameResult>): void;
-    /** Получить в виде массива */
-    toArray(printKey: boolean): (string | number) [][];
     /** Вывести в форме строки */
     toString(printKey?: boolean): string;
 }
