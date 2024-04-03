@@ -5,3 +5,8 @@ export function toOdd(element: INashElement): string {
     const {count, wins} = element;
     return count ? (wins / count * 100).toFixed(0) : 'x';
 }
+
+/** Привести к ключу */
+export function toKey(element: INashElement): string {
+    return element.key;
+}

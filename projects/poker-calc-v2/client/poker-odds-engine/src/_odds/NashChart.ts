@@ -1,8 +1,8 @@
-import {INashChart, INashChartMap, INashElement, IComb, IGameResult} from 'src/_odds/interface';
-import {COMBS, TNashKey, SYMILAR} from 'src/_odds/consts';
-import {RUNKS, TRunk, RUNK} from 'src/deal';
-import {toString} from 'src/_odds/NashChart/helpers/string';
-import {toOdd} from 'src/_odds/NashChart/helpers/stringNashElementHandlers';
+import { INashChart, INashChartMap, INashElement, IComb, IGameResult } from 'src/_odds/interface';
+import { COMBS, TNashKey, SYMILAR, STRING_TYPE_MODE } from 'src/_odds/consts';
+import { RUNKS, TRunk, RUNK } from 'src/deal';
+import { toString } from 'src/_odds/NashChart/helpers/string';
+import { toOdd, toKey } from 'src/_odds/NashChart/helpers/stringNashElementHandlers';
 
 /** Номиналы карт по убыванию */
 const REVERSED_RUNKS = [...RUNKS].reverse();
@@ -12,22 +12,28 @@ type TArrayHandler = (element: INashElement) => string;
 
 /** Таблица вероятностей */
 export default class NashChart implements INashChart {
-    
+
     private _chartMap: INashChartMap = genNashChartMap();
-    
+
     up(gameResult: Partial<IGameResult>): void {
         Object.entries(gameResult).forEach((entrie) => {
             const [key, value] = entrie;
             const nashKey: TNashKey = key as TNashKey;
-            const {count, wins} = value;
+            const { count, wins } = value;
             this._chartMap.count += count;
             this._chartMap[nashKey].count += count;
             this._chartMap[nashKey].wins += wins;
         });
     }
 
-    toString(): string {
-        return toString(this._toArray(toOdd), false);
+    toString(mode: STRING_TYPE_MODE = STRING_TYPE_MODE.ODD): string {
+        switch (mode) {
+        case STRING_TYPE_MODE.KEY:
+            return toString(this._toArray(toKey), 3);
+        case STRING_TYPE_MODE.ODD:
+        default:
+            return toString(this._toArray(toOdd), 2);
+        }
     }
 
     /** Получить в виде массива */
@@ -52,6 +58,7 @@ function genNashChartMap(): INashChartMap {
             const nashElement: INashElement = {} as INashElement;
             nashElement.count = 0;
             nashElement.wins = 0;
+            nashElement.key = key;
             COMBS.forEach((comb) => {
                 const combElement: IComb = {} as IComb;
                 combElement.count = 0;

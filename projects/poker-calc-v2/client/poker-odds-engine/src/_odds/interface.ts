@@ -1,4 +1,4 @@
-import {TNashKey, TComb} from 'src/_odds/consts';
+import {TNashKey, TComb, STRING_TYPE_MODE} from 'src/_odds/consts';
 import {TCardName} from 'src/deal';
 
 /** Интерфейс Таблица веротяностей */
@@ -6,7 +6,7 @@ export interface INashChart {
     /** Применить результат игры */
     up(gameResult: Partial<IGameResult>): void;
     /** Вывести в форме строки */
-    toString(printKey?: boolean): string;
+    toString(mode?: STRING_TYPE_MODE): string;
 }
 
 /** Интерфейс Счетчики вероятностей для комбинаций */
@@ -17,6 +17,7 @@ export interface IComb {
 
 /** Интерфейс Элемент таблицы вероятностей */
 export interface INashElement extends Record<TComb, IComb> {
+    key: TNashKey;
     count: number;
     wins: number;
 }

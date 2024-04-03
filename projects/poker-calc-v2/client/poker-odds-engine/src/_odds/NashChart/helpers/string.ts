@@ -12,11 +12,11 @@ const ANNOTATION_ELEMENT_LENGTH = 2;
 const REVERSED_RUNKS = [...RUNKS].reverse();
 
 /** Преобразовать данные таблицы вероятностей к строке */
-export function toString(chartData: string[][], printKey: boolean): string {
+export function toString(chartData: string[][], elementSize: number): string {
     const rows: string[] = [];
 
     // Делаем верхнюю строку с аннотациями
-    rows.push(getAnnotationRow(printKey ? 3 : 2));
+    rows.push(getAnnotationRow(elementSize));
 
     // Делаем строки с данными
     rows.push(...REVERSED_RUNKS.map((runk, i) => {
@@ -24,11 +24,7 @@ export function toString(chartData: string[][], printKey: boolean): string {
         const dataRows = chartData[i].map((element) => {
 
             // Обрабатываем отдельный элемент строки
-            if (printKey) {
-                return element as string;
-            } else {
-                return genSpaceString(2 - element.length) + element;
-            }
+            return genSpaceString(elementSize - element.length) + element;
         });
 
         // Навешиваем префикс строки
@@ -41,7 +37,7 @@ export function toString(chartData: string[][], printKey: boolean): string {
 
 /** Сформировать строку с аннотациями */
 function getAnnotationRow(elementLength: number): string {
-    const prefix = genSpaceString(ANNOTATION_ELEMENT_LENGTH + COLUMN_SEP_COUNT);
+    const prefix = 'o\\s' + genSpaceString(ANNOTATION_ELEMENT_LENGTH + COLUMN_SEP_COUNT - 3);
     const runks = REVERSED_RUNKS.map((runk) => {
         const resizedRunk = genSpaceString(elementLength - runk.length) + runk;
         return resizedRunk;
