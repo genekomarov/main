@@ -1,4 +1,5 @@
-import {TNashKey, TComb, STRING_TYPE_MODE} from 'src/_odds/consts';
+import {TNashKey, TCombKey, STRING_TYPE_MODE} from 'src/_odds/consts';
+import {INodeWithSubNodes, INode} from 'src/common';
 import {TCardName} from 'src/deal';
 
 /** Интерфейс параметров метода toString */
@@ -13,24 +14,6 @@ export interface INashChart {
     up(gameResult: Partial<IGameResult>): void;
     /** Вывести в форме строки */
     toString(params?: IToStringParams): string;
-}
-
-/** Интерфейс Счетчики вероятностей для комбинаций */
-export interface IComb {
-    count: number;
-    wins: number;
-}
-
-/** Интерфейс Элемент таблицы вероятностей */
-export interface INashElement extends Record<TComb, IComb> {
-    key: TNashKey;
-    count: number;
-    wins: number;
-}
-
-/** Интерфейс Корень объекта карты таблицы вероятностей */
-export interface INashChartMap extends Record<TNashKey, INashElement> {
-    count: number;
 }
 
 /** Интерфейс Счетчики в результате игры */
@@ -48,3 +31,30 @@ export interface IPlayerCards {
     cards: TCardName[];
     isWin: boolean;
 }
+
+export interface INashChartMapData {
+    count: number;
+}
+
+export interface IBaseNashElementData {
+    count: number;
+    wins: number;
+}
+
+
+export interface INashElementData extends IBaseNashElementData {
+    key: TNashKey;
+}
+
+export interface IBaseCombData {
+    count: number;
+    wins: number;
+}
+
+export interface ICombData extends IBaseCombData {
+    key: TCombKey;
+}
+
+export type TCombNode = INode<ICombData>;
+export type TNashElementNode = INodeWithSubNodes<INashElementData, TCombKey, TCombNode>;
+export type TNashChartMapNode = INodeWithSubNodes<INashChartMapData, TNashKey, TNashElementNode>;

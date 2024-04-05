@@ -15,9 +15,9 @@ export const COMB = {
 };
 
 /** Тип комбинации */
-export type TComb = keyof typeof COMB;
+export type TCombKey = keyof typeof COMB;
 /** Все комбинации в виде массива */
-export const COMBS = Object.keys(COMB) as TComb[];
+export const COMBS = Object.keys(COMB) as TCombKey[];
 
 /** Варианты одинаковы / разные масти в виде массива */
 export const SYMILAR = ['o', 's'] as const;

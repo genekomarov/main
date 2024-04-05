@@ -5,5 +5,5 @@ export interface INode<D> {
 
 /** Интерфейс узла с подузлами */
 export interface INodeWithSubNodes<D, K extends string | number | symbol, N> extends INode<D> {
-    subNodes: Record<K, N>
+    subNodes: Record<K, N>;
 }

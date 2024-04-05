@@ -1,12 +1,12 @@
-import { INashElement } from 'src/_odds/interface';
+import { INashElementData } from 'src/_odds/interface';
 
 /** Привести к значению вероятности */
-export function toOdd(element: INashElement): string {
-    const {count, wins} = element;
+export function toOdd(data: INashElementData): string {
+    const {count, wins} = data;
     return count ? (wins / count * 100).toFixed(0) : 'x';
 }
 
 /** Привести к ключу */
-export function toKey(element: INashElement): string {
-    return element.key;
+export function toKey(data: INashElementData): string {
+    return data.key;
 }

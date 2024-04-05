@@ -1,5 +1,10 @@
-import { INashChart, INashChartMap, INashElement, IComb, IGameResult, IToStringParams} from 'src/_odds/interface';
-import { COMBS, TNashKey, SYMILAR, STRING_TYPE_MODE } from 'src/_odds/consts';
+import {
+    INashChart, IGameResult, IToStringParams,
+    TCombNode, TNashElementNode, TNashChartMapNode,
+    INashElementData, INashChartMapData, IBaseNashElementData,
+    IBaseCombData
+} from 'src/_odds/interface';
+import { COMBS, TNashKey, SYMILAR, STRING_TYPE_MODE, TCombKey } from 'src/_odds/consts';
 import { RUNKS, TRunk, RUNK } from 'src/deal';
 import { toString } from 'src/_odds/NashChart/helpers/string';
 import { toOdd, toKey } from 'src/_odds/NashChart/helpers/stringNashElementHandlers';
@@ -8,7 +13,7 @@ import { toOdd, toKey } from 'src/_odds/NashChart/helpers/stringNashElementHandl
 const REVERSED_RUNKS = [...RUNKS].reverse();
 
 /** Обработчик преобразования элемента таблицы вероятностей к строке */
-type TArrayHandler = (element: INashElement) => string;
+type TArrayHandler = (data: INashElementData) => string;
 
 interface INashChartParams {
     /** Ограничение вероятности */
@@ -33,16 +38,16 @@ export default class NashChart implements INashChart {
         }
     }
 
-    private _chartMap: INashChartMap = genNashChartMap();
+    private _chartMap: TNashChartMapNode = genNashChartMap();
 
     up(gameResult: Partial<IGameResult>): void {
         Object.entries(gameResult).forEach((entrie) => {
             const [key, value] = entrie;
             const nashKey: TNashKey = key as TNashKey;
             const { count, wins } = value;
-            this._chartMap.count += count;
-            this._chartMap[nashKey].count += count;
-            this._chartMap[nashKey].wins += wins;
+            this._chartMap.data.count += count;
+            this._chartMap.subNodes[nashKey].data.count += count;
+            this._chartMap.subNodes[nashKey].data.wins += wins;
         });
     }
 
@@ -63,39 +68,47 @@ export default class NashChart implements INashChart {
         return REVERSED_RUNKS.map((runk_1) => {
             return REVERSED_RUNKS.map((runk_2) => {
                 const key: TNashKey = getNashKeyByRunks(runk_1, runk_2);
-                const element: INashElement = this._chartMap[key];
-                const {count, wins} = element;
+                const data: INashElementData = this._chartMap.subNodes[key].data;
+                const {count, wins} = data;
                 if (useThreshold && (!count || wins / count * 100 < this._threshold)) {
                     return '.';
                 }
-                return handler(element);
+                return handler(data);
             });
         });
     }
 }
 
 /** Создает пустую карту для таблицы вероятностей */
-function genNashChartMap(): INashChartMap {
-    const nashChartMap: INashChartMap = {} as INashChartMap;
-    nashChartMap.count = 0;
+function genNashChartMap(): TNashChartMapNode {
+    const nashElementNodes: Record<TNashKey, TNashElementNode> = {} as Record<TNashKey, TNashElementNode>;
     RUNKS.forEach((runk_1) => {
         RUNKS.forEach((runk_2) => {
-            const key: TNashKey = getNashKeyByRunks(runk_1, runk_2);
-            const nashElement: INashElement = {} as INashElement;
-            nashElement.count = 0;
-            nashElement.wins = 0;
-            nashElement.key = key;
-            COMBS.forEach((comb) => {
-                const combElement: IComb = {} as IComb;
-                combElement.count = 0;
-                combElement.wins = 0;
-                nashElement[comb] = combElement;
+            const combNodes: Record<TCombKey, TCombNode> = {} as Record<TCombKey, TCombNode>;
+            COMBS.forEach((combKey) => {
+                const combNode: TCombNode = {
+                    data: {...emptyCombData, key: combKey}
+                };
+                combNodes[combKey] = combNode;
             });
-            nashChartMap[key] = nashElement;
+            const nashKey: TNashKey = getNashKeyByRunks(runk_1, runk_2);
+            const nashElementNode: TNashElementNode = {
+                data: {...emptyNashElementData, key: nashKey},
+                subNodes: combNodes
+            };
+            nashElementNodes[nashKey] = nashElementNode;
         });
     });
-    return nashChartMap;
+    const nashChartMapNode: TNashChartMapNode = {
+        data: {...emptyNashChartMapData},
+        subNodes: nashElementNodes
+    };
+    return nashChartMapNode;
 }
+
+const emptyNashChartMapData: INashChartMapData = {count: 0};
+const emptyNashElementData: IBaseNashElementData = {count: 0, wins: 0};
+const emptyCombData: IBaseCombData = {count: 0, wins: 0};
 
 /**
  * Получить ключ для таблицы вероятности
