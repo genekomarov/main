@@ -2,9 +2,9 @@ import {
     INashChart, IGameResult, IToStringParams,
     TCombNode, TNashElementNode, TNashChartMapNode,
     INashElementData, INashChartMapData, IBaseNashElementData,
-    IBaseCombData
+    IBaseCombData, TNashChartMapSubNodes, TNashElementSubNodes
 } from 'src/_odds/interface';
-import { COMBS, TNashKey, SYMILAR, STRING_TYPE_MODE, TCombKey } from 'src/_odds/consts';
+import { COMBS, TNashKey, SYMILAR, STRING_TYPE_MODE} from 'src/_odds/consts';
 import { RUNKS, TRunk, RUNK } from 'src/deal';
 import { toString } from 'src/_odds/NashChart/helpers/string';
 import { toOdd, toKey } from 'src/_odds/NashChart/helpers/stringNashElementHandlers';
@@ -81,10 +81,10 @@ export default class NashChart implements INashChart {
 
 /** Создает пустую карту для таблицы вероятностей */
 function genNashChartMap(): TNashChartMapNode {
-    const nashElementNodes: Record<TNashKey, TNashElementNode> = {} as Record<TNashKey, TNashElementNode>;
+    const nashElementNodes: TNashChartMapSubNodes = {} as TNashChartMapSubNodes;
     RUNKS.forEach((runk_1) => {
         RUNKS.forEach((runk_2) => {
-            const combNodes: Record<TCombKey, TCombNode> = {} as Record<TCombKey, TCombNode>;
+            const combNodes: TNashElementSubNodes = {} as TNashElementSubNodes;
             COMBS.forEach((combKey) => {
                 const combNode: TCombNode = {
                     data: {...emptyCombData, key: combKey}

@@ -32,6 +32,8 @@ export interface IPlayerCards {
     isWin: boolean;
 }
 
+
+
 export interface INashChartMapData {
     count: number;
 }
@@ -40,7 +42,6 @@ export interface IBaseNashElementData {
     count: number;
     wins: number;
 }
-
 
 export interface INashElementData extends IBaseNashElementData {
     key: TNashKey;
@@ -56,5 +57,9 @@ export interface ICombData extends IBaseCombData {
 }
 
 export type TCombNode = INode<ICombData>;
-export type TNashElementNode = INodeWithSubNodes<INashElementData, TCombKey, TCombNode>;
-export type TNashChartMapNode = INodeWithSubNodes<INashChartMapData, TNashKey, TNashElementNode>;
+
+export type TNashElementSubNodes = Record<TCombKey, TCombNode>;
+export type TNashElementNode = INodeWithSubNodes<INashElementData, TNashElementSubNodes>;
+
+export type TNashChartMapSubNodes = Record<TNashKey, TNashElementNode>;
+export type TNashChartMapNode = INodeWithSubNodes<INashChartMapData, TNashChartMapSubNodes>;
