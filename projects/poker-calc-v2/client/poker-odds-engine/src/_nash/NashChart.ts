@@ -5,12 +5,9 @@ import {
     IBaseCombData, TNashChartMapSubNodes, TNashElementSubNodes
 } from 'src/_nash/interface/INashChartMap';
 import { COMBS, TNashKey, SYMILAR, STRING_TYPE_MODE} from 'src/_nash/consts';
-import { RUNKS, TRunk, RUNK } from 'src/deal';
+import { RUNKS, TRunk, RUNK, REVERSED_RUNKS} from 'src/deal';
 import { toString } from 'src/_nash/helpers/string';
 import { toOdd, toKey } from 'src/_nash/helpers/stringNashElementHandlers';
-
-/** Номиналы карт по убыванию */
-const REVERSED_RUNKS = [...RUNKS].reverse();
 
 /** Обработчик преобразования элемента таблицы вероятностей к строке */
 type TArrayHandler = (data: INashElementData) => string;

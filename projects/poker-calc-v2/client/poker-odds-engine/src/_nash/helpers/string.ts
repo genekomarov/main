@@ -1,5 +1,5 @@
 import {genSpaceString, genString, stringFromArray} from 'src/common';
-import {RUNKS} from 'src/deal';
+import {REVERSED_RUNKS} from 'src/deal';
 
 /** Количество разделителей строк */
 const ROW_SEP_COUNT = 0;
@@ -7,9 +7,6 @@ const ROW_SEP_COUNT = 0;
 const COLUMN_SEP_COUNT = 1;
 /** Длина элементов аннотаций */
 const ANNOTATION_ELEMENT_LENGTH = 2;
-
-/** Номиналы карт по убыванию */
-const REVERSED_RUNKS = [...RUNKS].reverse();
 
 /** Преобразовать данные таблицы вероятностей к строке */
 export function toString(chartData: string[][], elementSize: number): string {

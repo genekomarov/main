@@ -27,6 +27,8 @@ export const SUIT = {
 export type TRunk = keyof typeof RUNK;
 /** Все номиналы в виде массива */
 export const RUNKS = Object.keys(RUNK) as TRunk[];
+/** Номиналы по убыванию */
+export const REVERSED_RUNKS = [...RUNKS].reverse();
 
 /** Тип масти */
 export type TSuit = keyof typeof SUIT;
