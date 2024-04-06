@@ -1,13 +1,11 @@
 import {INashChart, IGameResult, IToStringParams} from 'src/_nash/interface';
-import {
-    TCombNode, TNashElementNode, TNashChartMapNode,
-    INashElementData, INashChartMapData, IBaseNashElementData,
-    IBaseCombData, TNashChartMapSubNodes, TNashElementSubNodes
-} from 'src/_nash/interface/INashChartMap';
-import { COMBS, TNashKey, SYMILAR, STRING_TYPE_MODE} from 'src/_nash/consts';
-import { RUNKS, TRunk, RUNK, REVERSED_RUNKS} from 'src/deal';
-import { toString } from 'src/_nash/helpers/string';
-import { toOdd, toKey } from 'src/_nash/helpers/stringNashElementHandlers';
+import {TNashChartMapNode,INashElementData} from 'src/_nash/interface/INashChartMap';
+import {TNashKey, STRING_TYPE_MODE} from 'src/_nash/consts';
+import {REVERSED_RUNKS} from 'src/deal';
+import {toString} from 'src/_nash/helpers/string';
+import {toOdd, toKey} from 'src/_nash/helpers/stringNashElementHandlers';
+import {genNashChartMap} from 'src/_nash/helpers/genNashChartMap';
+import {getNashKeyByRunks} from 'src/_nash/helpers/nashChart';
 
 /** Обработчик преобразования элемента таблицы вероятностей к строке */
 type TArrayHandler = (data: INashElementData) => string;
@@ -74,46 +72,4 @@ export default class NashChart implements INashChart {
             });
         });
     }
-}
-
-/** Создает пустую карту для таблицы вероятностей */
-function genNashChartMap(): TNashChartMapNode {
-    const nashElementNodes: TNashChartMapSubNodes = {} as TNashChartMapSubNodes;
-    RUNKS.forEach((runk_1) => {
-        RUNKS.forEach((runk_2) => {
-            const combNodes: TNashElementSubNodes = {} as TNashElementSubNodes;
-            COMBS.forEach((combKey) => {
-                const combNode: TCombNode = {
-                    data: {...emptyCombData, key: combKey}
-                };
-                combNodes[combKey] = combNode;
-            });
-            const nashKey: TNashKey = getNashKeyByRunks(runk_1, runk_2);
-            const nashElementNode: TNashElementNode = {
-                data: {...emptyNashElementData, key: nashKey},
-                subNodes: combNodes
-            };
-            nashElementNodes[nashKey] = nashElementNode;
-        });
-    });
-    const nashChartMapNode: TNashChartMapNode = {
-        data: {...emptyNashChartMapData},
-        subNodes: nashElementNodes
-    };
-    return nashChartMapNode;
-}
-
-const emptyNashChartMapData: INashChartMapData = {count: 0};
-const emptyNashElementData: IBaseNashElementData = {count: 0, wins: 0};
-const emptyCombData: IBaseCombData = {count: 0, wins: 0};
-
-/**
- * Получить ключ для таблицы вероятности
- * @description
- * Формирует ключи с учетом того, что слева в таблице находятся одинаковые масти, а справа разные
- */
-export function getNashKeyByRunks(runk_1: TRunk, runk_2: TRunk): TNashKey {
-    return RUNK[runk_1] > RUNK[runk_2]
-        ? `${runk_1}${runk_2}${SYMILAR[1]}`
-        : `${runk_2}${runk_1}${SYMILAR[0]}`;
 }
