@@ -1,5 +1,5 @@
-import {calcNash} from 'src/_oddsUtils/nash';
-import {STRING_TYPE_MODE} from 'src/_nash/consts';
+import {calcNash} from 'src/oddsUtils';
+import {STRING_TYPE_MODE} from 'src/nash';
 
 describe('Nash', () => {
     it('calcNash', () => {

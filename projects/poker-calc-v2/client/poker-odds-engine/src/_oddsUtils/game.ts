@@ -1,8 +1,7 @@
-import {IGameResult as TGameResult} from 'src/_nash/interface';
+import {IGameResult, getNashKeyByCards} from 'src/nash';
 import {IDeal, ICard, TCardName} from 'src/deal';
+import {TABLE_COUNT} from 'src/_oddsUtils/consts';
 import pokerCalc from 'poker-calc';
-import {getNashKeyByCards} from 'src/_nash/helpers/nashChart';
-import {TABLE_COUNT} from 'src/_nash/consts';
 
 /** Состояние игры по игракам */
 interface IPlayerCardsMap {
@@ -13,7 +12,7 @@ interface IPlayerCardsMap {
 }
 
 /** Провести одну игру */
-export function game(deal: IDeal, desk: IDeal, playerCount: number): Partial<TGameResult> {
+export function game(deal: IDeal, desk: IDeal, playerCount: number): Partial<IGameResult> {
     deal.shuffle();
     const tableCardsLength = desk.length;
     if (tableCardsLength > TABLE_COUNT) {
@@ -43,7 +42,7 @@ export function game(deal: IDeal, desk: IDeal, playerCount: number): Partial<TGa
     result.forEach((winner) => {
         playerCardsMap[winner.playerId].isWin = true;
     });
-    const gameResult: TGameResult = {} as TGameResult;
+    const gameResult: IGameResult = {} as IGameResult;
     Object.entries(playerCardsMap).forEach((entrie) => {
         const value = entrie[1];
         const {isWin, cards} = value;

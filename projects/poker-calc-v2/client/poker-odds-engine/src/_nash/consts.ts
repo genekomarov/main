@@ -27,8 +27,5 @@ export type TSymilar = typeof SYMILAR[number];
 /** Тип ключа для значения таблицы вероятности */
 export type TNashKey = `${TRunk}${TRunk}${TSymilar}`;
 
-/** Количество карт на столе в текущей разновидности игры */
-export const TABLE_COUNT = 5;
-
 /** Режим преобразования к строке */
 export enum STRING_TYPE_MODE {KEY,ODD}

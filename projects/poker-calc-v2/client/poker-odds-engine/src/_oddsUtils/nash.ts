@@ -1,5 +1,4 @@
-import NashChart from 'src/_nash/NashChart';
-import {INashChart} from 'src/_nash/interface';
+import {NashChart, INashChart} from 'src/nash';
 import {TCardName, genDeck} from 'src/deal';
 import {game} from 'src/_oddsUtils/game';
 
