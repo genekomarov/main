@@ -1,4 +1,4 @@
-import { INashElementData } from 'src/_nash/interface';
+import { INashElementData } from 'src/_nash/interface/nashChartMap';
 
 /** Привести к значению вероятности */
 export function toOdd(data: INashElementData): string {

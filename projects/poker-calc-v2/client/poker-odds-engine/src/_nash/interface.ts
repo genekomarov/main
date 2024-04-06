@@ -1,5 +1,4 @@
-import {TNashKey, TCombKey, STRING_TYPE_MODE} from 'src/_nash/consts';
-import {INodeWithSubNodes, INode} from 'src/common';
+import {TNashKey, STRING_TYPE_MODE} from 'src/_nash/consts';
 import {TCardName} from 'src/deal';
 
 /** Интерфейс параметров метода toString */
@@ -31,35 +30,3 @@ export interface IPlayerCards {
     cards: TCardName[];
     isWin: boolean;
 }
-
-
-
-export interface INashChartMapData {
-    count: number;
-}
-
-export interface IBaseNashElementData {
-    count: number;
-    wins: number;
-}
-
-export interface INashElementData extends IBaseNashElementData {
-    key: TNashKey;
-}
-
-export interface IBaseCombData {
-    count: number;
-    wins: number;
-}
-
-export interface ICombData extends IBaseCombData {
-    key: TCombKey;
-}
-
-export type TCombNode = INode<ICombData>;
-
-export type TNashElementSubNodes = Record<TCombKey, TCombNode>;
-export type TNashElementNode = INodeWithSubNodes<INashElementData, TNashElementSubNodes>;
-
-export type TNashChartMapSubNodes = Record<TNashKey, TNashElementNode>;
-export type TNashChartMapNode = INodeWithSubNodes<INashChartMapData, TNashChartMapSubNodes>;

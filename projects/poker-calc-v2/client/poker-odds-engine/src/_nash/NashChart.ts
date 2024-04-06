@@ -1,9 +1,9 @@
+import {INashChart, IGameResult, IToStringParams} from 'src/_nash/interface';
 import {
-    INashChart, IGameResult, IToStringParams,
     TCombNode, TNashElementNode, TNashChartMapNode,
     INashElementData, INashChartMapData, IBaseNashElementData,
     IBaseCombData, TNashChartMapSubNodes, TNashElementSubNodes
-} from 'src/_nash/interface';
+} from 'src/_nash/interface/nashChartMap';
 import { COMBS, TNashKey, SYMILAR, STRING_TYPE_MODE} from 'src/_nash/consts';
 import { RUNKS, TRunk, RUNK } from 'src/deal';
 import { toString } from 'src/_nash/helpers/string';
