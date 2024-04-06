@@ -1,8 +1,8 @@
-import {IGameResult as TGameResult} from 'src/_odds/interface';
+import {IGameResult as TGameResult} from 'src/_nash/interface';
 import {IDeal, ICard, TCardName} from 'src/deal';
 import pokerCalc from 'poker-calc';
-import {getNashKeyByCards} from 'src/_odds/helpers';
-import {TABLE_COUNT} from 'src/_odds/consts';
+import {getNashKeyByCards} from 'src/_nash/helpers/nashChart';
+import {TABLE_COUNT} from 'src/_nash/consts';
 
 /** Состояние игры по игракам */
 interface IPlayerCardsMap {

@@ -1,4 +1,4 @@
-import {TNashKey, TCombKey, STRING_TYPE_MODE} from 'src/_odds/consts';
+import {TNashKey, TCombKey, STRING_TYPE_MODE} from 'src/_nash/consts';
 import {INodeWithSubNodes, INode} from 'src/common';
 import {TCardName} from 'src/deal';
 

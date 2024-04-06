@@ -1,7 +1,7 @@
-import NashChart from 'src/_odds/NashChart';
-import {INashChart} from 'src/_odds/interface';
+import NashChart from 'src/_nash/NashChart';
+import {INashChart} from 'src/_nash/interface';
 import {TCardName, genDeck} from 'src/deal';
-import {game} from 'src/_odds/utils/game';
+import {game} from 'src/_oddsUtils/game';
 
 /** Параметры для расчета таблицы вероятностей */
 interface ICalcNashParams {

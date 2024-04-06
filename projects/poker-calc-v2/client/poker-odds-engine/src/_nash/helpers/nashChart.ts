@@ -1,5 +1,5 @@
 import {TRunk, ICard, RUNK} from 'src/deal';
-import {TNashKey, SYMILAR} from 'src/_odds/consts';
+import {TNashKey, SYMILAR} from 'src/_nash/consts';
 
 /** Получить ключ для таблицы вероятностей */
 export function getNashKeyByCards(card_1: ICard, card_2: ICard): TNashKey {

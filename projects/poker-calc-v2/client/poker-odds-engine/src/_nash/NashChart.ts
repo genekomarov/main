@@ -3,11 +3,11 @@ import {
     TCombNode, TNashElementNode, TNashChartMapNode,
     INashElementData, INashChartMapData, IBaseNashElementData,
     IBaseCombData, TNashChartMapSubNodes, TNashElementSubNodes
-} from 'src/_odds/interface';
-import { COMBS, TNashKey, SYMILAR, STRING_TYPE_MODE} from 'src/_odds/consts';
+} from 'src/_nash/interface';
+import { COMBS, TNashKey, SYMILAR, STRING_TYPE_MODE} from 'src/_nash/consts';
 import { RUNKS, TRunk, RUNK } from 'src/deal';
-import { toString } from 'src/_odds/NashChart/helpers/string';
-import { toOdd, toKey } from 'src/_odds/NashChart/helpers/stringNashElementHandlers';
+import { toString } from 'src/_nash/helpers/string';
+import { toOdd, toKey } from 'src/_nash/helpers/stringNashElementHandlers';
 
 /** Номиналы карт по убыванию */
 const REVERSED_RUNKS = [...RUNKS].reverse();

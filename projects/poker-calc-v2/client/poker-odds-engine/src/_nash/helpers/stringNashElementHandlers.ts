@@ -1,4 +1,4 @@
-import { INashElementData } from 'src/_odds/interface';
+import { INashElementData } from 'src/_nash/interface';
 
 /** Привести к значению вероятности */
 export function toOdd(data: INashElementData): string {
