@@ -6,6 +6,7 @@ export type TArrayHandler = (data: INashElementData) => string;
 export interface INashChartParams {
     /** Ограничение вероятности */
     threshold?: number;
+    /** Количество игроков */
     playerCount?: number;
 }
 
