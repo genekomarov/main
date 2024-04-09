@@ -3,4 +3,4 @@ export {stringFromArray, genString, genSpaceString} from 'src/_common/helpers/st
 export {passNodes} from 'src/_common/helpers/nodes';
 
 // Чистые типы
-export {INode, INodeWithSubNodes} from 'src/_common/interface/INodes';
+export {INode, INodeWithSubNodes, TNodeArray} from 'src/_common/interface/INodes';

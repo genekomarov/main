@@ -9,4 +9,4 @@ export interface INodeWithSubNodes<K extends string | number | symbol = '', N ex
 }
 
 /** Массив узлов */
-export type INodeArray = (INode | INodeWithSubNodes)[];
+export type TNodeArray = (INode | INodeWithSubNodes)[];

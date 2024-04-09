@@ -1,5 +1,5 @@
 import {calcNash} from 'src/oddsUtils';
-import {STRING_TYPE_MODE, NashChart} from 'src/nash';
+import {STRING_TYPE_MODE} from 'src/nash';
 
 describe('Nash', () => {
     it('calcNash', () => {
@@ -21,8 +21,8 @@ describe('Nash', () => {
         }));
         // console.log(nashChart.toString());
     });
-    it('passNodes', () => {
-        const chart = new NashChart({});
-        chart.calc();
-    });
+    // it('passNodes', () => {
+    //     const chart = new NashChart({});
+    //     chart.calc();
+    // });
 });

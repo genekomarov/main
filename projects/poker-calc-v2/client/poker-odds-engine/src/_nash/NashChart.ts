@@ -8,7 +8,7 @@ import {genNashChartMap} from 'src/_nash/helpers/genNashChartMap';
 import {getNashKeyByRunks} from 'src/_nash/helpers/nashChart';
 import {TArrayHandler, INashChartParams} from 'src/_nash/interface/INashChart';
 import {passNodes} from 'src/common';
-
+ 
 /** Таблица вероятностей */
 export default class NashChart implements INashChart {
 

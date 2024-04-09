@@ -29,3 +29,9 @@ export type TNashKey = `${TRunk}${TRunk}${TSymilar}`;
 
 /** Режим преобразования к строке */
 export enum STRING_TYPE_MODE {KEY,ODD}
+
+/** Уровни структуры */
+export enum LEVELS {elements, combs}
+
+/** Фазы расчета состояния */
+export enum PHASES {beforeAll, before, after, afterAll}
