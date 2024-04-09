@@ -7,6 +7,7 @@ import {toOdd, toKey} from 'src/_nash/helpers/stringNashElementHandlers';
 import {genNashChartMap} from 'src/_nash/helpers/genNashChartMap';
 import {getNashKeyByRunks} from 'src/_nash/helpers/nashChart';
 import {TArrayHandler, INashChartParams} from 'src/_nash/interface/INashChart';
+import {passNodes} from 'src/common';
 
 /** Таблица вероятностей */
 export default class NashChart implements INashChart {
@@ -35,6 +36,12 @@ export default class NashChart implements INashChart {
             this._chartMap.data.count += count;
             this._chartMap.subNodes[nashKey].data.count += count;
             this._chartMap.subNodes[nashKey].data.wins += wins;
+        });
+    }
+
+    calc(): void {
+        passNodes(this._chartMap, (deep, nodes) => {
+            console.log(`${deep} ${nodes.length}`);
         });
     }
 

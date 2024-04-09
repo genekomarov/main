@@ -23,6 +23,8 @@ export interface IToStringParams {
 export interface INashChart {
     /** Применить результат игры */
     up(gameResult: Partial<IGameResult>): void;
+    /** Расчет полного состояния */
+    calc(): void;
     /** Вывести в форме строки */
     toString(params?: IToStringParams): string;
 }
