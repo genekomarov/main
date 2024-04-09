@@ -26,7 +26,7 @@ export interface ICombData extends IBaseCombData {
 export type TCombNode = INode<ICombData>;
 
 export type TNashElementSubNodes = Record<TCombKey, TCombNode>;
-export type TNashElementNode = INodeWithSubNodes<INashElementData, TNashElementSubNodes>;
+export type TNashElementNode = INodeWithSubNodes<TCombKey, TCombNode, INashElementData>;
 
 export type TNashChartMapSubNodes = Record<TNashKey, TNashElementNode>;
-export type TNashChartMapNode = INodeWithSubNodes<INashChartMapData, TNashChartMapSubNodes>;
+export type TNashChartMapNode = INodeWithSubNodes<TNashKey, TNashElementNode, INashChartMapData>;

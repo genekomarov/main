@@ -1,9 +1,12 @@
 /** Интерфейс узла */
-export interface INode<D> {
+export interface INode<D = object> {
     data: D;
 }
 
 /** Интерфейс узла с подузлами */
-export interface INodeWithSubNodes<D, N> extends INode<D> {
-    subNodes: N;
+export interface INodeWithSubNodes<K extends string | number | symbol = '', N extends INode | INodeWithSubNodes = INode, D = object> extends INode<D> {
+    subNodes: Record<K, N>;
 }
+
+/** Массив узлов */
+export type INodeArray = (INode | INodeWithSubNodes)[];
