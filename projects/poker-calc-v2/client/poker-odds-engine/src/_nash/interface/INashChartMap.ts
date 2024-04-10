@@ -8,6 +8,7 @@ export interface INashChartMapData {
 export interface IBaseNashElementData {
     count: number;
     wins: number;
+    probability: number;
 }
 
 export interface INashElementData extends IBaseNashElementData {

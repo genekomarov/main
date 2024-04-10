@@ -1,11 +1,12 @@
 import {calcNash} from 'src/oddsUtils';
-import {STRING_TYPE_MODE, NashChart} from 'src/nash';
+import {STRING_TYPE_MODE} from 'src/nash';
+// import {NashChart} from 'src/nash';
 
 describe('Nash', () => {
-    it('passNodes', () => {
-        const chart = new NashChart({});
-        chart.calc();
-    });
+    // it('passNodes', () => {
+    //     const chart = new NashChart({});
+    //     chart.calc();
+    // });
     it('calcNash', () => {
         const nashChart = calcNash({
             tableCards: [],
@@ -13,6 +14,7 @@ describe('Nash', () => {
             iterCount: 10_000,
             threshold: 20
         });
+        nashChart.calc();
         console.log(nashChart.toString({
             mode: STRING_TYPE_MODE.KEY
         }));

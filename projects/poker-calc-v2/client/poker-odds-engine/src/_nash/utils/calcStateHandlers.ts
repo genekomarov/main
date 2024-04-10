@@ -3,14 +3,21 @@ import {TCalcStateHandlers, TNodes} from 'src/_nash/interface/ICalcStateHandlers
 /** Обработчики расчета состояния */
 export const CALC_STATE_HANDLERS: TCalcStateHandlers = {
     root: [],
-    elements: [printElementName],
-    combs: [printCombName]
+    elements: [calcElementProbability],
+    combs: []
 };
 
-function printElementName(nodes: TNodes): void {
-    console.log(nodes[1]?.data.key);
+function calcElementProbability(nodes: TNodes): void {
+    const node = nodes[1];
+    if (!node) return;
+    const {count, wins} = node.data;
+    node.data.probability = count ? wins / count * 100 : 0;
 }
 
-function printCombName(nodes: TNodes): void {
-    console.log(nodes[2]?.data.key);
-}
+// function printElementName(nodes: TNodes): void {
+//     console.log(nodes[1]?.data.key);
+// }
+
+// function printCombName(nodes: TNodes): void {
+//     console.log(nodes[2]?.data.key);
+// }

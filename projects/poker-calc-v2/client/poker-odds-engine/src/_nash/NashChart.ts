@@ -70,8 +70,8 @@ export default class NashChart implements INashChart {
             return REVERSED_RUNKS.map((runk_2) => {
                 const key: TNashKey = getNashKeyByRunks(runk_1, runk_2);
                 const data: INashElementData = this._chartMap.subNodes[key].data;
-                const {count, wins} = data;
-                if (useThreshold && (!count || wins / count * 100 < this._threshold)) {
+                const {probability} = data;
+                if (useThreshold && (probability < this._threshold)) {
                     return '.';
                 }
                 return handler(data);
