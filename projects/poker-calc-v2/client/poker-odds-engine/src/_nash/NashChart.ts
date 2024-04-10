@@ -1,6 +1,6 @@
 import {INashChart, IGameResult, IToStringParams} from 'src/_nash/interface/INashChart';
-import {TNashChartMapNode,INashElementData} from 'src/_nash/interface/INashChartMap';
-import {TNashKey, STRING_TYPE_MODE} from 'src/_nash/consts';
+import {TNashChartMapNode,INashElementData, TLevels} from 'src/_nash/interface/INashChartMap';
+import {TNashKey, STRING_TYPE_MODE, LEVELS} from 'src/_nash/consts';
 import {REVERSED_RUNKS} from 'src/deal';
 import {toString} from 'src/_nash/helpers/string';
 import {toOdd, toKey} from 'src/_nash/helpers/stringNashElementHandlers';
@@ -8,6 +8,8 @@ import {genNashChartMap} from 'src/_nash/helpers/genNashChartMap';
 import {getNashKeyByRunks} from 'src/_nash/helpers/nashChart';
 import {TArrayHandler, INashChartParams} from 'src/_nash/interface/INashChart';
 import {passNodes} from 'src/common';
+import {CALC_STATE_HANDLERS} from 'src/_nash/utils/calcStateHandlers';
+import {TNodes} from 'src/_nash/interface/ICalcStateHandlers';
  
 /** Таблица вероятностей */
 export default class NashChart implements INashChart {
@@ -40,10 +42,14 @@ export default class NashChart implements INashChart {
     }
 
     calc(): void {
-        passNodes(this._chartMap, (deep, nodes) => {
-            console.log(`${deep} ${nodes.length}`);
-            return false;
-        });
+        passNodes<TNodes>(this._chartMap, this._calcStateRouter.bind(this), []);
+    }
+
+    /** Маршрутизатор обработчиков расчета состояния */
+    private _calcStateRouter(deep: number, nodes: TNodes): boolean {
+        const phase = LEVELS[deep] as TLevels;
+        CALC_STATE_HANDLERS[phase].forEach((handler) => handler(nodes));
+        return false;
     }
 
     toString(params?: IToStringParams): string {
