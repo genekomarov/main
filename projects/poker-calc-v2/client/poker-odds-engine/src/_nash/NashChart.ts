@@ -42,6 +42,7 @@ export default class NashChart implements INashChart {
     calc(): void {
         passNodes(this._chartMap, (deep, nodes) => {
             console.log(`${deep} ${nodes.length}`);
+            return false;
         });
     }
 

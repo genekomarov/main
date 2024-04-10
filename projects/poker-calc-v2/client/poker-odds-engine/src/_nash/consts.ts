@@ -31,7 +31,4 @@ export type TNashKey = `${TRunk}${TRunk}${TSymilar}`;
 export enum STRING_TYPE_MODE {KEY,ODD}
 
 /** Уровни структуры */
-export enum LEVELS {elements, combs}
-
-/** Фазы расчета состояния */
-export enum PHASES {beforeAll, before, after, afterAll}
+export enum LEVELS {root, elements, combs}
