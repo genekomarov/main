@@ -58,7 +58,7 @@ export default class NashChart implements INashChart {
         switch (mode) {
         case STRING_TYPE_MODE.KEY:
             return toString(this._toArray(toKey, useThreshold), 3);
-        case STRING_TYPE_MODE.ODD:
+        case STRING_TYPE_MODE.WIN_PROB:
         default:
             return toString(this._toArray(toOdd, useThreshold), 2);
         }

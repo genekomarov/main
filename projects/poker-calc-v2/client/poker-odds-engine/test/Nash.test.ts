@@ -19,10 +19,10 @@ describe('Nash', () => {
             mode: STRING_TYPE_MODE.KEY
         }));
         console.log(nashChart.toString({
-            mode: STRING_TYPE_MODE.ODD
+            mode: STRING_TYPE_MODE.WIN_PROB
         }));
         console.log(nashChart.toString({
-            mode: STRING_TYPE_MODE.ODD,
+            mode: STRING_TYPE_MODE.WIN_PROB,
             useThreshold: true
         }));
         // console.log(nashChart.toString());
