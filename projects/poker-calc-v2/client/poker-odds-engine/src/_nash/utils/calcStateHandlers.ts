@@ -11,7 +11,7 @@ function calcElementProbability(nodes: TNodes): void {
     const node = nodes[1];
     if (!node) return;
     const {count, wins} = node.data;
-    node.data.probability = count ? wins / count * 100 : 0;
+    node.data.winProbability = count ? wins / count * 100 : 0;
 }
 
 // function printElementName(nodes: TNodes): void {
