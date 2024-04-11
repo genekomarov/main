@@ -28,7 +28,7 @@ export type TSymilar = typeof SYMILAR[number];
 export type TNashKey = `${TRunk}${TRunk}${TSymilar}`;
 
 /** Режим преобразования к строке */
-export enum STRING_TYPE_MODE {KEY, WIN_PROB}
+export enum STRING_TYPE_MODE {KEY, WIN_PROB, DROP_PROB}
 
 /** Уровни структуры */
 export enum LEVELS {root, elements, combs}

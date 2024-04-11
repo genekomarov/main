@@ -3,7 +3,7 @@ import {TNashChartMapNode,INashElementData, TLevels} from 'src/_nash/interface/I
 import {TNashKey, STRING_TYPE_MODE, LEVELS} from 'src/_nash/consts';
 import {REVERSED_RUNKS} from 'src/deal';
 import {toString} from 'src/_nash/helpers/string';
-import {toOdd, toKey} from 'src/_nash/helpers/stringNashElementHandlers';
+import {toWinProb, toDropProb, toKey} from 'src/_nash/helpers/stringNashElementHandlers';
 import {genNashChartMap} from 'src/_nash/helpers/genNashChartMap';
 import {getNashKeyByRunks} from 'src/_nash/helpers/nashChart';
 import {TArrayHandler, INashChartParams} from 'src/_nash/interface/INashChart';
@@ -58,9 +58,11 @@ export default class NashChart implements INashChart {
         switch (mode) {
         case STRING_TYPE_MODE.KEY:
             return toString(this._toArray(toKey, useThreshold), 3);
+        case STRING_TYPE_MODE.DROP_PROB:
+            return toString(this._toArray(toDropProb, useThreshold), 2);
         case STRING_TYPE_MODE.WIN_PROB:
         default:
-            return toString(this._toArray(toOdd, useThreshold), 2);
+            return toString(this._toArray(toWinProb, useThreshold), 2);
         }
     }
 

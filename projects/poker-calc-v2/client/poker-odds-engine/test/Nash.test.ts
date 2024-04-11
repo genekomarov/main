@@ -19,6 +19,9 @@ describe('Nash', () => {
             mode: STRING_TYPE_MODE.KEY
         }));
         console.log(nashChart.toString({
+            mode: STRING_TYPE_MODE.DROP_PROB
+        }));
+        console.log(nashChart.toString({
             mode: STRING_TYPE_MODE.WIN_PROB
         }));
         console.log(nashChart.toString({
