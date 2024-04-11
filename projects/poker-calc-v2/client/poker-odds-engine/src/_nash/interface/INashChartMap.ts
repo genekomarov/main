@@ -9,6 +9,7 @@ export interface IBaseNashElementData {
     count: number;
     wins: number;
     winProbability: number;
+    dropProbability: number;
 }
 
 export interface INashElementData extends IBaseNashElementData {

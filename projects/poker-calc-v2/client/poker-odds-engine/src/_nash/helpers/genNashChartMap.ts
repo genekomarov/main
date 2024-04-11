@@ -35,5 +35,10 @@ export function genNashChartMap(): TNashChartMapNode {
 }
 
 const emptyNashChartMapData: INashChartMapData = {count: 0};
-const emptyNashElementData: IBaseNashElementData = {count: 0, wins: 0, winProbability: 0};
+const emptyNashElementData: IBaseNashElementData = {
+    count: 0,
+    wins: 0,
+    winProbability: 0,
+    dropProbability: 0
+};
 const emptyCombData: IBaseCombData = {count: 0, wins: 0};
