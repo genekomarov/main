@@ -1,4 +1,4 @@
-import {INode, INodeWithSubNodes, TNodeArray} from 'src/_common/interface/INodes';
+import {INode, INodeWithSubNodes, TNodeArray} from 'src/common/interface/INodes';
 
 /** Обработчик для узла */
 type TNodeHandler<N extends TNodeArray> = (deep: number, nodes: N) => boolean;

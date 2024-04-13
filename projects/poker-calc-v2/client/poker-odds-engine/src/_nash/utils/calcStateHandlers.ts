@@ -1,5 +1,5 @@
 import {TCalcStateHandlers, TNodes} from 'src/_nash/interface/ICalcStateHandlers';
-import {calcPercentOrZero} from 'src/_common/helpers/mathOperations';
+import {calcPercentOrZero} from 'src/common/helpers/mathOperations';
 
 /** Обработчики расчета состояния */
 export const CALC_STATE_HANDLERS: TCalcStateHandlers = {
