@@ -1,5 +1,5 @@
 import {TNashKey, TCombKey, LEVELS} from 'src/_nash/consts';
-import {INodeWithSubNodes, INode} from 'src/common';
+import {INodeWithSubNodes, INode} from 'src/_common/interface/INodes';
 
 export interface INashChartMapData {
     count: number;

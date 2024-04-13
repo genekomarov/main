@@ -7,7 +7,7 @@ import {toWinProb, toDropProb, toKey} from 'src/_nash/helpers/stringNashElementH
 import {genNashChartMap} from 'src/_nash/helpers/genNashChartMap';
 import {getNashKeyByRunks} from 'src/_nash/helpers/nashChart';
 import {TArrayHandler, INashChartParams} from 'src/_nash/interface/INashChart';
-import {passNodes} from 'src/common';
+import {passNodes} from 'src/_common/helpers/nodes';
 import {CALC_STATE_HANDLERS} from 'src/_nash/utils/calcStateHandlers';
 import {TNodes} from 'src/_nash/interface/ICalcStateHandlers';
 import Timer from 'src/_common/Timer';

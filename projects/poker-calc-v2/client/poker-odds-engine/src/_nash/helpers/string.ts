@@ -1,4 +1,4 @@
-import {genSpaceString, genString, stringFromArray} from 'src/common';
+import {genSpaceString, genString, stringFromArray} from 'src/_common/helpers/string';
 import {REVERSED_RUNKS} from 'src/deal';
 
 /** Количество разделителей строк */
