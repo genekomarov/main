@@ -1,7 +1,7 @@
-import {INashElementData} from 'src/_nash/interface/INashChartMap';
+import {INashElementData, TNashChartMapNode} from 'src/_nash/interface/INashChartMap';
 
 /** Обработчик преобразования элемента таблицы вероятностей к строке */
-export type TArrayHandler = (data: INashElementData) => string;
+export type TArrayHandler = (data: INashElementData, rootNode: TNashChartMapNode) => string;
 
 export interface INashChartParams {
     /** Ограничение вероятности */

@@ -1,4 +1,4 @@
-import { INashElementData } from 'src/_nash/interface/INashChartMap';
+import {INashElementData, TNashChartMapNode} from 'src/_nash/interface/INashChartMap';
 
 /** Привести к значению вероятности */
 export function toWinProb(data: INashElementData): string {
@@ -7,9 +7,10 @@ export function toWinProb(data: INashElementData): string {
 }
 
 /** Привести к значению вероятности */
-export function toDropProb(data: INashElementData): string {
+export function toDropProb(data: INashElementData, rootNode: TNashChartMapNode): string {
     const {dropProbability} = data;
-    return dropProbability ? (dropProbability * 10).toFixed(0) : 'x';
+    const minDropProbability = rootNode.data.dropProbabilityMultiplier;
+    return dropProbability ? (dropProbability / minDropProbability).toFixed(0) : 'x';
 }
 
 /** Привести к ключу */

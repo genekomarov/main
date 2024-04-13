@@ -99,7 +99,7 @@ export default class NashChart implements INashChart {
                 if (useThreshold && (winProbability < this._threshold)) {
                     return '.';
                 }
-                return handler(data);
+                return handler(data, this._chartMap);
             });
         });
     }
