@@ -1,4 +1,4 @@
-import {INashChart, IGameResult, IToStringParams} from 'src/_nash/interface/INashChart';
+import {INashChart, IGameResult, IToStringParams, IMeta} from 'src/_nash/interface/INashChart';
 import {TNashChartMapNode,INashElementData, TLevels} from 'src/_nash/interface/INashChartMap';
 import {TNashKey, STRING_TYPE_MODE, LEVELS} from 'src/_nash/consts';
 import {REVERSED_RUNKS} from 'src/deal';
@@ -10,12 +10,21 @@ import {TArrayHandler, INashChartParams} from 'src/_nash/interface/INashChart';
 import {passNodes} from 'src/common';
 import {CALC_STATE_HANDLERS} from 'src/_nash/utils/calcStateHandlers';
 import {TNodes} from 'src/_nash/interface/ICalcStateHandlers';
+import Timer from 'src/_common/Timer';
  
 /** Таблица вероятностей */
 export default class NashChart implements INashChart {
 
     /** Ограничение вероятности (по умолчанию 100 / playerCount) */
-    private _threshold: number;
+    private readonly _threshold: number;
+
+    /** Таймер */
+    private _timer: Timer | null = null;
+
+    /** Время игры */
+    private _playTime: number | null = null;
+    /** Время расчета состояния */
+    private _calcTime: number | null = null;
 
     constructor(params: INashChartParams) {
         const {threshold, playerCount} = params;
@@ -31,6 +40,7 @@ export default class NashChart implements INashChart {
     private _chartMap: TNashChartMapNode = genNashChartMap();
 
     up(gameResult: Partial<IGameResult>): void {
+        if (!this._timer) this._timer = new Timer();
         Object.entries(gameResult).forEach((entrie) => {
             const [key, value] = entrie;
             const nashKey: TNashKey = key as TNashKey;
@@ -42,7 +52,20 @@ export default class NashChart implements INashChart {
     }
 
     calc(): void {
+        this._playTime = this._timer?.stop() ?? null;
+        this._timer = new Timer();
         passNodes<TNodes>(this._chartMap, this._calcStateRouter.bind(this), []);
+        this._calcTime = this._timer.stop();
+        this._timer = null;
+    }
+
+    getMeta(): IMeta {
+        return {
+            totalCount: this._chartMap.data.count,
+            treshHold: this._threshold,
+            playTime: this._playTime,
+            calcTime: this._calcTime
+        };
     }
 
     /** Маршрутизатор обработчиков расчета состояния */

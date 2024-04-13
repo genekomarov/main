@@ -19,12 +19,22 @@ export interface IToStringParams {
     useThreshold?: boolean; 
 }
 
+/** Метаинформация */
+export interface IMeta {
+    totalCount: number;
+    treshHold: number;
+    playTime: number | null;
+    calcTime: number | null;
+}
+
 /** Интерфейс Таблица веротяностей */
 export interface INashChart {
     /** Применить результат игры */
     up(gameResult: Partial<IGameResult>): void;
     /** Расчет полного состояния */
     calc(): void;
+    /** Получить мета информацию */
+    getMeta(): IMeta;
     /** Вывести в форме строки */
     toString(params?: IToStringParams): string;
 }

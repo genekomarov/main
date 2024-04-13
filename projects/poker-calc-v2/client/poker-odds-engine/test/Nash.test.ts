@@ -28,6 +28,7 @@ describe('Nash', () => {
             mode: STRING_TYPE_MODE.WIN_PROB,
             useThreshold: true
         }));
+        console.log(nashChart.getMeta());
         // console.log(nashChart.toString());
     });
 });
