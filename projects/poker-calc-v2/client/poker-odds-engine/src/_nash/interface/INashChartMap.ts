@@ -2,6 +2,7 @@ import {TNashKey, TCombKey, LEVELS, PHASES} from 'src/_nash/consts';
 import {INodeWithSubNodes, INode} from 'src/common/interface/INodes';
 
 export interface INashChartMapData {
+    threshold: number;
     count: number;
     dropProbabilityMultiplier: number;
     tresholdWaiting: number;

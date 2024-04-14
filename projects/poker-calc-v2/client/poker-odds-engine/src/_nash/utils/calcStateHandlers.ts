@@ -5,7 +5,7 @@ import {calcPercentOrZero} from 'src/common/helpers/mathOperations';
 export const CALC_STATE_HANDLERS: TCalcStateHandlers = {
     root: {
         before: [calcMinDropProbability],
-        after: []
+        after: [calcTresholdWaiting]
     },
     elements: {
         before: [calcElementWinProbability, calcElementDropProbability],
@@ -16,6 +16,18 @@ export const CALC_STATE_HANDLERS: TCalcStateHandlers = {
         after: []
     }
 };
+
+function calcTresholdWaiting(nodes: TNodes): void {
+    const node = nodes[0];
+    if (!node) return;
+    // let upCount: number = 0;
+    // let downCount: number = 0;
+    // Object.entries(node.subNodes).forEach((entrie) => {
+    //     const data = entrie[1].data;
+    //     const {count, winProbability} = data;
+
+    // });
+}
 
 function calcMinDropProbability(nodes: TNodes): void {
     const node = nodes[0];

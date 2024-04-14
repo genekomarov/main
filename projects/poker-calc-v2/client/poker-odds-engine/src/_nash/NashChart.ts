@@ -15,9 +15,6 @@ import Timer from 'src/common/Timer';
 /** Таблица вероятностей */
 export default class NashChart implements INashChart {
 
-    /** Ограничение вероятности (по умолчанию 100 / playerCount) */
-    private readonly _threshold: number;
-
     /** Таймер */
     private _timer: Timer | null = null;
 
@@ -26,18 +23,18 @@ export default class NashChart implements INashChart {
     /** Время расчета состояния */
     private _calcTime: number | null = null;
 
+    private _chartMap: TNashChartMapNode = genNashChartMap();
+
     constructor(params: INashChartParams) {
         const {threshold, playerCount} = params;
         if (threshold) {
-            this._threshold = threshold;
+            this._chartMap.data.threshold = threshold;
         } else if (playerCount) {
-            this._threshold = 100 / playerCount;
+            this._chartMap.data.threshold = 100 / playerCount;
         } else {
-            this._threshold = 100;
+            this._chartMap.data.threshold = 100;
         }
     }
-
-    private _chartMap: TNashChartMapNode = genNashChartMap();
 
     up(gameResult: Partial<IGameResult>): void {
         if (!this._timer) this._timer = new Timer();
@@ -62,7 +59,7 @@ export default class NashChart implements INashChart {
     getMeta(): IMeta {
         return {
             totalCount: this._chartMap.data.count,
-            treshHold: this._threshold,
+            treshHold: this._chartMap.data.threshold,
             playTime: this._playTime,
             calcTime: this._calcTime
         };
@@ -96,7 +93,7 @@ export default class NashChart implements INashChart {
                 const key: TNashKey = getNashKeyByRunks(runk_1, runk_2);
                 const data: INashElementData = this._chartMap.subNodes[key].data;
                 const {winProbability} = data;
-                if (useThreshold && (winProbability < this._threshold)) {
+                if (useThreshold && (winProbability < this._chartMap.data.threshold)) {
                     return '.';
                 }
                 return handler(data, this._chartMap);

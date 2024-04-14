@@ -35,6 +35,7 @@ export function genNashChartMap(): TNashChartMapNode {
 }
 
 const emptyNashChartMapData: INashChartMapData = {
+    threshold: 0,
     count: 0, 
     dropProbabilityMultiplier: 0,
     tresholdWaiting: 0

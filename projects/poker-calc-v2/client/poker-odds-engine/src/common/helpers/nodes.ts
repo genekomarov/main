@@ -14,4 +14,5 @@ export function passNodes<N extends TNodeArray>(node: INode | INodeWithSubNodes,
             passNodes(entrie[1], handler, nodes, deep + 1);
         });
     }
+    handler(deep, nodes, PHASES.after);
 }
