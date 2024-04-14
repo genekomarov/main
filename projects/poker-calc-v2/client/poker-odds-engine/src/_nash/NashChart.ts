@@ -61,7 +61,8 @@ export default class NashChart implements INashChart {
             totalCount: this._chartMap.data.count,
             treshHold: this._chartMap.data.threshold,
             playTime: this._playTime,
-            calcTime: this._calcTime
+            calcTime: this._calcTime,
+            tresholdWaiting: this._chartMap.data.tresholdWaiting
         };
     }
 

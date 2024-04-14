@@ -25,6 +25,7 @@ export interface IMeta {
     treshHold: number;
     playTime: number | null;
     calcTime: number | null;
+    tresholdWaiting: number;
 }
 
 /** Интерфейс Таблица веротяностей */

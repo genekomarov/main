@@ -1,5 +1,5 @@
 import {TCalcStateHandlers, TNodes} from 'src/_nash/interface/ICalcStateHandlers';
-import {calcPercentOrZero} from 'src/common/helpers/mathOperations';
+import {calcPercentOrValue} from 'src/common/helpers/mathOperations';
 
 /** Обработчики расчета состояния */
 export const CALC_STATE_HANDLERS: TCalcStateHandlers = {
@@ -20,13 +20,19 @@ export const CALC_STATE_HANDLERS: TCalcStateHandlers = {
 function calcTresholdWaiting(nodes: TNodes): void {
     const node = nodes[0];
     if (!node) return;
-    // let upCount: number = 0;
-    // let downCount: number = 0;
-    // Object.entries(node.subNodes).forEach((entrie) => {
-    //     const data = entrie[1].data;
-    //     const {count, winProbability} = data;
-
-    // });
+    const treshold = node.data.threshold;
+    let upCount: number = 0;
+    let downCount: number = 0;
+    Object.entries(node.subNodes).forEach((entrie) => {
+        const data = entrie[1].data;
+        const {count, winProbability} = data;
+        if (winProbability < treshold) {
+            downCount += count;
+        } else {
+            upCount += count;
+        }
+    });
+    node.data.tresholdWaiting = calcPercentOrValue(upCount, upCount + downCount, 0);
 }
 
 function calcMinDropProbability(nodes: TNodes): void {
@@ -37,14 +43,14 @@ function calcMinDropProbability(nodes: TNodes): void {
         const elementCount = entrie[1].data.count;
         return elementCount < acc ? elementCount : acc;
     }, chartCount);
-    node.data.dropProbabilityMultiplier = calcPercentOrZero(minElementCount, chartCount, 1);
+    node.data.dropProbabilityMultiplier = calcPercentOrValue(minElementCount, chartCount, 1);
 }
 
 function calcElementWinProbability(nodes: TNodes): void {
     const node = nodes[1];
     if (!node) return;
     const {count, wins} = node.data;
-    node.data.winProbability = calcPercentOrZero(wins, count, 0);
+    node.data.winProbability = calcPercentOrValue(wins, count, 0);
 }
 
 function calcElementDropProbability(nodes: TNodes): void {
@@ -52,7 +58,7 @@ function calcElementDropProbability(nodes: TNodes): void {
     if (!chartNode || !elementNode) return;
     const {count: elementCount} = elementNode.data;
     const {count: chartCount} = chartNode.data;
-    elementNode.data.dropProbability = calcPercentOrZero(elementCount, chartCount, 0);
+    elementNode.data.dropProbability = calcPercentOrValue(elementCount, chartCount, 0);
 }
 
 // function printElementName(nodes: TNodes): void {
