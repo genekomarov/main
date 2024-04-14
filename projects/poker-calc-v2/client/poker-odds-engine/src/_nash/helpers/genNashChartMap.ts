@@ -34,7 +34,11 @@ export function genNashChartMap(): TNashChartMapNode {
     return nashChartMapNode;
 }
 
-const emptyNashChartMapData: INashChartMapData = {count: 0, dropProbabilityMultiplier: 0};
+const emptyNashChartMapData: INashChartMapData = {
+    count: 0, 
+    dropProbabilityMultiplier: 0,
+    tresholdWaiting: 0
+};
 const emptyNashElementData: IBaseNashElementData = {
     count: 0,
     wins: 0,

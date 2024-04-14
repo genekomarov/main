@@ -4,6 +4,7 @@ import {INodeWithSubNodes, INode} from 'src/common/interface/INodes';
 export interface INashChartMapData {
     count: number;
     dropProbabilityMultiplier: number;
+    tresholdWaiting: number;
 }
 
 export interface IBaseNashElementData {
