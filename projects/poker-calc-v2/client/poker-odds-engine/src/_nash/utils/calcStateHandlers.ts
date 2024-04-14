@@ -3,9 +3,18 @@ import {calcPercentOrZero} from 'src/common/helpers/mathOperations';
 
 /** Обработчики расчета состояния */
 export const CALC_STATE_HANDLERS: TCalcStateHandlers = {
-    root: [calcMinDropProbability],
-    elements: [calcElementWinProbability, calcElementDropProbability],
-    combs: []
+    root: {
+        before: [calcMinDropProbability],
+        after: []
+    },
+    elements: {
+        before: [calcElementWinProbability, calcElementDropProbability],
+        after: []
+    },
+    combs: {
+        before: [],
+        after: []
+    }
 };
 
 function calcMinDropProbability(nodes: TNodes): void {

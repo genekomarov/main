@@ -1,4 +1,4 @@
-import {TNashKey, TCombKey, LEVELS} from 'src/_nash/consts';
+import {TNashKey, TCombKey, LEVELS, PHASES} from 'src/_nash/consts';
 import {INodeWithSubNodes, INode} from 'src/common/interface/INodes';
 
 export interface INashChartMapData {
@@ -36,3 +36,4 @@ export type TNashChartMapSubNodes = Record<TNashKey, TNashElementNode>;
 export type TNashChartMapNode = INodeWithSubNodes<TNashKey, TNashElementNode, INashChartMapData>;
 
 export type TLevels = keyof typeof LEVELS;
+export type TPhases = keyof typeof PHASES;

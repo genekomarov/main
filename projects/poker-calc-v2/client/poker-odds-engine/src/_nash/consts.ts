@@ -32,3 +32,6 @@ export enum STRING_TYPE_MODE {KEY, WIN_PROB, DROP_PROB}
 
 /** Уровни структуры */
 export enum LEVELS {root, elements, combs}
+
+/** Фазы выполнения расчета состояния */
+export enum PHASES {before, after}

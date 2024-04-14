@@ -1,6 +1,6 @@
 import {INashChart, IGameResult, IToStringParams, IMeta} from 'src/_nash/interface/INashChart';
-import {TNashChartMapNode,INashElementData, TLevels} from 'src/_nash/interface/INashChartMap';
-import {TNashKey, STRING_TYPE_MODE, LEVELS} from 'src/_nash/consts';
+import {TNashChartMapNode,INashElementData, TLevels, TPhases} from 'src/_nash/interface/INashChartMap';
+import {TNashKey, STRING_TYPE_MODE, LEVELS, PHASES} from 'src/_nash/consts';
 import {REVERSED_RUNKS} from 'src/deal';
 import {toString} from 'src/_nash/helpers/string';
 import {toWinProb, toDropProb, toKey} from 'src/_nash/helpers/stringNashElementHandlers';
@@ -69,9 +69,10 @@ export default class NashChart implements INashChart {
     }
 
     /** Маршрутизатор обработчиков расчета состояния */
-    private _calcStateRouter(deep: number, nodes: TNodes): boolean {
-        const phase = LEVELS[deep] as TLevels;
-        CALC_STATE_HANDLERS[phase].forEach((handler) => handler(nodes));
+    private _calcStateRouter(deep: number, nodes: TNodes, phase: PHASES): boolean {
+        const level = LEVELS[deep] as TLevels;
+        const phaseName = PHASES[phase] as TPhases;
+        CALC_STATE_HANDLERS[level][phaseName].forEach((handler) => handler(nodes));
         return false;
     }
 
