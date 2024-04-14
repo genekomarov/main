@@ -69,11 +69,10 @@ export default class NashChart implements INashChart {
     }
 
     /** Маршрутизатор обработчиков расчета состояния */
-    private _calcStateRouter(deep: number, nodes: TNodes, phase: PHASES): boolean {
+    private _calcStateRouter(deep: number, nodes: TNodes, phase: PHASES): void {
         const level = LEVELS[deep] as TLevels;
         const phaseName = PHASES[phase] as TPhases;
         CALC_STATE_HANDLERS[level][phaseName].forEach((handler) => handler(nodes));
-        return false;
     }
 
     toString(params?: IToStringParams): string {
