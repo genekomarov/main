@@ -1,4 +1,6 @@
 import {INashElementData, TNashChartMapNode} from 'src/_nash/interface/INashChartMap';
+import {TNashKey, STRING_TYPE_MODE} from 'src/_nash/consts';
+import {TCardName} from 'src/deal';
 
 /** Обработчик преобразования элемента таблицы вероятностей к строке */
 export type TArrayHandler = (data: INashElementData, rootNode: TNashChartMapNode) => string;
@@ -9,9 +11,6 @@ export interface INashChartParams {
     /** Количество игроков */
     playerCount?: number;
 }
-
-import {TNashKey, STRING_TYPE_MODE} from 'src/_nash/consts';
-import {TCardName} from 'src/deal';
 
 /** Интерфейс параметров метода toString */
 export interface IToStringParams {
@@ -36,6 +35,8 @@ export interface INashChart {
     calc(): void;
     /** Получить мета информацию */
     getMeta(): IMeta;
+    /** Получить данные элемента по ключу */
+    getDataByNashKey(nashKey: TNashKey): INashElementData;
     /** Вывести в форме строки */
     toString(params?: IToStringParams): string;
 }

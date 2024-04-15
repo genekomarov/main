@@ -66,6 +66,10 @@ export default class NashChart implements INashChart {
         };
     }
 
+    getDataByNashKey(nashKey: TNashKey): INashElementData {
+        return this._chartMap.subNodes[nashKey].data;
+    }
+
     /** Маршрутизатор обработчиков расчета состояния */
     private _calcStateRouter(deep: number, nodes: TNodes, phase: PHASES): void {
         const level = LEVELS[deep] as TLevels;
