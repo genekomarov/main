@@ -1,0 +1,9 @@
+@use '../base/theme.scss';
+
+.light {
+    @extend %base;
+    
+    --bgColor1: #161616;
+    --bgColor2: #252525;
+    --bgColor3: #383838;
+}
