@@ -1,5 +1,5 @@
 import React from "react";
-import NashChartPanel from "comps/app/NashChartPanel/NashChartPanel";
+import NashChartPanel from "comps/app/NashChart/NashChart";
 import CalcSettings from "comps/app/CalcSettings/CalcSettings";
 import Cards from "comps/app/Cards/Cards";
 import CombOdds from "comps/app/CombOdds/CombOdds";

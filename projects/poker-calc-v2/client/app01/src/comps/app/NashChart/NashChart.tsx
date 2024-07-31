@@ -1,13 +1,13 @@
 import React from "react";
 import NashOdd from "comps/app/NashOdd/NashOdd";
 
-function NashChartPanel(): React.ReactElement {
+function NashChart(): React.ReactElement {
 
     const items: boolean[][] = new Array(13).fill(new Array(13).fill(true));
 
     return (
         <div>
-            NashChartPanel
+            NashChart
             <div style={{
                 width: '350px',
                 height: '350px',
@@ -24,4 +24,4 @@ function NashChartPanel(): React.ReactElement {
     );
 }
 
-export default NashChartPanel;
+export default NashChart;
