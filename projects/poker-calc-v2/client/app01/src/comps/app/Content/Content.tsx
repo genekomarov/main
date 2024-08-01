@@ -4,17 +4,25 @@ import CalcSettings from "comps/app/CalcSettings/CalcSettings";
 import Cards from "comps/app/Cards/Cards";
 import CombOdds from "comps/app/CombOdds/CombOdds";
 import Simulation from "comps/app/Simulation/Simulation";
+import CardSelector from "comps/app/CardSelector/CardSelector";
 import theme from 'comps/themes/light/theme.module.scss';
 
 function Content(): React.ReactElement {
     return (
         <div className={theme.light}>
             Content
-            <NashChartPanel/>
-            <CalcSettings/>
-            <Cards/>
-            <CombOdds/>
-            <Simulation/>
+            <div className={theme.flex}>
+                <div>
+                    <NashChartPanel/>
+                    <CalcSettings/>
+                    <Cards/>
+                    <CombOdds/>
+                    <Simulation/>
+                </div>
+                <div>
+                    <CardSelector/>
+                </div>
+            </div>
         </div>
     );
 }

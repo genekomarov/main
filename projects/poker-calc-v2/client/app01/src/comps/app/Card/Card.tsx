@@ -1,10 +1,17 @@
 import React from "react";
 
-function Card(): React.ReactElement {
+interface IProps {
+    height?: number;
+}
+
+const DEFAILT_HEIGHT = 60;
+
+function Card(props: IProps): React.ReactElement {
+    const {height} = props;
     return (
         <div style={{
-            height: '60px',
-            width: '40px'
+            height: `${height ?? DEFAILT_HEIGHT}px`,
+            aspectRatio: '2 / 3'
         }}>Card</div>
     );
 }
