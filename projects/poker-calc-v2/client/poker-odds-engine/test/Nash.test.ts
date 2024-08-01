@@ -8,7 +8,6 @@ describe('Nash', () => {
             iterCount: 1_000,
             threshold: 20
         });
-        nashChart.calc();
         
         const dropNashChart = calcNash({
             tableCards: [],
@@ -17,6 +16,7 @@ describe('Nash', () => {
             threshold: 20,
             referenceNash: nashChart
         });
-        dropNashChart.calc();
+
+        console.log(dropNashChart);
     });
 });

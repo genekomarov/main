@@ -25,8 +25,6 @@ export interface IMeta {
 export interface INashChart {
     /** Применить результат игры */
     up(gameResult: Partial<IGameResult>): void;
-    /** Расчет полного состояния */
-    calc(): void;
     /** Получить мета информацию */
     getMeta(): IMeta;
     /** Получить данные элемента по ключу */
