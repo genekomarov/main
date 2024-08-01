@@ -1,5 +1,4 @@
 import {TNashKey, TCombKey, LEVELS, PHASES} from 'src/_nash/consts';
-import {INodeWithSubNodes, INode} from 'src/common/interface/INodes';
 
 export interface INashChartMapData {
     count: number;
@@ -36,3 +35,13 @@ export type TNashChartMapNode = INodeWithSubNodes<TNashKey, TNashElementNode, IN
 
 export type TLevels = keyof typeof LEVELS;
 export type TPhases = keyof typeof PHASES;
+
+/** Интерфейс узла */
+interface INode<D = object> {
+    data: D;
+}
+
+/** Интерфейс узла с подузлами */
+interface INodeWithSubNodes<K extends string | number | symbol = '', N extends INode | INodeWithSubNodes = INode, D = object> extends INode<D> {
+    subNodes: Record<K, N>;
+}
