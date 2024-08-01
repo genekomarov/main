@@ -1,8 +1,10 @@
 import React from "react";
-import theme from 'comps/themes/light/theme.module.scss';
 import Card from 'comps/app/Card/Card';
+import { ThemeContext } from "comps/app/Theme/Theme";
 
 function CardSelector(): React.ReactElement {
+
+    const theme = React.useContext(ThemeContext);
 
     const cards: boolean[][] = new Array(14).fill(new Array(4).fill(true));
 

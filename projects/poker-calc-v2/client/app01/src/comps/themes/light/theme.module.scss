@@ -1,6 +1,6 @@
 @use '../base/theme.scss';
 
-.light {
+.themeClass {
     @extend %base;
     
     --bgColor1: #161616;
