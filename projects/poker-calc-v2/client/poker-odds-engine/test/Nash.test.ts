@@ -6,15 +6,13 @@ describe('Nash', () => {
             tableCards: [],
             playerCount: 5,
             iterCount: 1_000,
-            threshold: 20
         });
         
         const dropNashChart = calcNash({
             tableCards: [],
             playerCount: 5,
             iterCount: 1_000,
-            threshold: 20,
-            referenceNash: nashChart
+            prevNash: nashChart
         });
 
         console.log(dropNashChart);

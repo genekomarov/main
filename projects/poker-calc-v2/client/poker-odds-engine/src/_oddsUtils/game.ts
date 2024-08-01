@@ -1,4 +1,4 @@
-import { IGameResult, getNashKeyByCards, INashChart } from 'src/nash';
+import { IGameResult, getNashKeyByCards } from 'src/nash';
 import { IDeal, ICard, TCardName } from 'src/deal';
 import { TABLE_COUNT } from 'src/_oddsUtils/consts';
 import pokerCalc from 'poker-calc';
@@ -16,13 +16,11 @@ interface IGameParams {
     deal: IDeal;
     desk: IDeal;
     playerCount: number;
-    referenceNash?: INashChart;
-    threshold?: number;
 }
 
 /** Провести одну игру */
 export function game(params: IGameParams): Partial<IGameResult> {
-    const { deal, desk, playerCount, referenceNash, threshold } = params;
+    const { deal, desk, playerCount } = params;
     deal.shuffle();
     const tableCardsLength = desk.length;
     if (tableCardsLength > TABLE_COUNT) {
@@ -37,13 +35,6 @@ export function game(params: IGameParams): Partial<IGameResult> {
         };
     }
     const playerCards = Object.entries(playerCardsMap)
-        .filter((entrie) => {
-            if (!threshold || !referenceNash) return true;
-            const cards = entrie[1].cards;
-            const nashKey = getNashKeyByCards(cards[0], cards[1]);
-            const {winProbability} = referenceNash.getDataByNashKey(nashKey);
-            return winProbability >= threshold;
-        })
         .map((entrie) => {
             const [playerId, value] = entrie;
             const cardObjects = value.cards;

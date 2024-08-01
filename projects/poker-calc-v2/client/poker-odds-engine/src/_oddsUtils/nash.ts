@@ -12,15 +12,11 @@ interface ICalcNashParams {
     iterCount: number;
     /** Таблица вероятностей для дополнения */
     prevNash?: INashChart;
-    /** Опорная таблица вероятностей */
-    referenceNash?: INashChart;
-    /** Ограничение вероятности*/
-    threshold?: number;
 }
 
 /** Рассчитать таблицу вероятностей */
 export function calcNash(params: ICalcNashParams): INashChart {
-    const {prevNash, tableCards, playerCount, iterCount, threshold, referenceNash} = params;
+    const {prevNash, tableCards, playerCount, iterCount} = params;
     const nashChart = prevNash ?? new NashChart();
     const deal = genDeck();
     const desk = deal.pullCards(tableCards);
@@ -28,9 +24,7 @@ export function calcNash(params: ICalcNashParams): INashChart {
         const gameResult = game({
             deal: deal.clone(),
             desk: desk.clone(),
-            playerCount,
-            referenceNash,
-            threshold
+            playerCount
         });
         nashChart.up(gameResult);
     }

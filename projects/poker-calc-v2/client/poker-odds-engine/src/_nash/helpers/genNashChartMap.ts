@@ -39,7 +39,6 @@ const emptyNashChartMapData: INashChartMapData = {
 };
 const emptyNashElementData: IBaseNashElementData = {
     count: 0,
-    wins: 0,
-    winProbability: 0
+    wins: 0
 };
 const emptyCombData: IBaseCombData = {count: 0, wins: 0};
