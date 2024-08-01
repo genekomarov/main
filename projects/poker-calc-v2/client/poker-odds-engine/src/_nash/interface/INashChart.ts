@@ -6,8 +6,6 @@ import {TCardName} from 'src/deal';
 export type TArrayHandler = (data: INashElementData, rootNode: TNashChartMapNode) => string;
 
 export interface INashChartParams {
-    /** Ограничение вероятности */
-    threshold?: number;
     /** Количество игроков */
     playerCount?: number;
 }
@@ -21,10 +19,6 @@ export interface IToStringParams {
 /** Метаинформация */
 export interface IMeta {
     totalCount: number;
-    treshHold: number;
-    playTime: number | null;
-    calcTime: number | null;
-    tresholdWaiting: number;
 }
 
 /** Интерфейс Таблица веротяностей */

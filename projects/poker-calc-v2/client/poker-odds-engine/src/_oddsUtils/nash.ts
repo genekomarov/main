@@ -21,10 +21,7 @@ interface ICalcNashParams {
 /** Рассчитать таблицу вероятностей */
 export function calcNash(params: ICalcNashParams): INashChart {
     const {prevNash, tableCards, playerCount, iterCount, threshold, referenceNash} = params;
-    const nashChart = prevNash ?? new NashChart({
-        threshold,
-        playerCount
-    });
+    const nashChart = prevNash ?? new NashChart();
     const deal = genDeck();
     const desk = deal.pullCards(tableCards);
     for (let iter = 0; iter < iterCount; iter++) {
