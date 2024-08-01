@@ -2,14 +2,12 @@ import {TNashKey, TCombKey, LEVELS, PHASES} from 'src/_nash/consts';
 
 export interface INashChartMapData {
     count: number;
-    dropProbabilityMultiplier: number;
 }
 
 export interface IBaseNashElementData {
     count: number;
     wins: number;
     winProbability: number;
-    dropProbability: number;
 }
 
 export interface INashElementData extends IBaseNashElementData {
