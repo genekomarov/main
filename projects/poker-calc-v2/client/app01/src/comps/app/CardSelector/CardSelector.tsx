@@ -17,7 +17,7 @@ function CardSelector(): React.ReactElement {
                         return <div className={theme.flex} key={cardRowIndex}>
                             {
                                 cardRow.map((card, cardIndex) => {
-                                    return <Card height={55} key={cardIndex}/>;
+                                    return <Card height={50} key={cardIndex}/>;
                                 })
                             }
                         </div>;

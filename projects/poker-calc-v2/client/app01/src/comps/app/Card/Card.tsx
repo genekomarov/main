@@ -12,7 +12,7 @@ function Card(props: IProps): React.ReactElement {
         <div style={{
             height: `${height ?? DEFAILT_HEIGHT}px`,
             aspectRatio: '2 / 3'
-        }}>Card</div>
+        }}>Cd</div>
     );
 }
 
