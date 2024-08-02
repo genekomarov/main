@@ -1,5 +1,10 @@
 import {TCardName} from 'src/deal';
-import {TComb, IPlayerCards} from 'src/odds';
+import {TCombKey} from 'src/nash';
+
+interface IPlayerCards {
+    playerId: string;
+    cards: TCardName[];
+}
 
 interface IGetHoldemWinnerParams {
     boardCards: TCardName[];
@@ -11,7 +16,7 @@ interface IFlags {
 }
 
 interface IHandInfo {
-    type: TComb;
+    type: TCombKey;
     strength: number;
 }
 

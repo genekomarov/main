@@ -38,11 +38,9 @@ export function game(params: IGameParams): Partial<IGameResult> {
         .map((entrie) => {
             const [playerId, value] = entrie;
             const cardObjects = value.cards;
-            const isWin = value.isWin;
             return {
                 playerId,
-                cards: cardObjects.map((cardObject) => cardObject.toString().replace('T', '10') as TCardName),
-                isWin
+                cards: cardObjects.map((cardObject) => cardObject.toString().replace('T', '10') as TCardName)
             };
         });
     const result = pokerCalc.getHoldemWinner({

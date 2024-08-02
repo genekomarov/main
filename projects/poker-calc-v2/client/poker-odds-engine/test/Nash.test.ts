@@ -8,13 +8,13 @@ describe('Nash', () => {
             iterCount: 1_000,
         });
         
-        const dropNashChart = calcNash({
-            tableCards: [],
-            playerCount: 5,
-            iterCount: 1_000,
-            prevNash: nashChart
-        });
+        // const dropNashChart = calcNash({
+        //     tableCards: [],
+        //     playerCount: 5,
+        //     iterCount: 1_000,
+        //     prevNash: nashChart
+        // });
 
-        console.log(dropNashChart);
+        console.log(nashChart);
     });
 });
