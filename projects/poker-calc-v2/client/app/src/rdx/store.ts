@@ -1,5 +1,4 @@
 import {createStore, combineReducers, Reducer} from 'redux';
-import {composeWithDevTools} from 'redux-devtools-extension';
 import oddsTableReducer from 'rdx/oddsTable/reducer';
 import {IState} from 'rdx/oddsTable/state';
 import {IPayloadAction} from 'rdx/interface';
@@ -14,5 +13,10 @@ const rootReducer: TRootReducer = combineReducers({
     oddsTable: oddsTableReducer
 }) as TRootReducer;
 
-const store = createStore(rootReducer, composeWithDevTools());
+// @ts-ignore 2339
+const reduxDevtoolsExtension = window.__REDUX_DEVTOOLS_EXTENSION__ as (() => void) || undefined;
+
+// @ts-ignore
+const store = createStore(rootReducer, reduxDevtoolsExtension?.());
+
 export default store;
