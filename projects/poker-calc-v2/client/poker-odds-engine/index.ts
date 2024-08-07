@@ -1,1 +1,1 @@
-export {};
+export {calcNash} from 'src/oddsUtils';
