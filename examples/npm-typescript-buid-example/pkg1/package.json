@@ -1,0 +1,21 @@
+{
+  "name": "pkg1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "build:watch": "npx tsc -w",
+    "run": "node .",
+    "patch": "npx ts-patch install",
+    "postinstall": "npm run patch && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ts-patch": "^3.2.1",
+    "typescript": "^5.5.4",
+    "typescript-transform-paths": "^3.4.10"
+  }
+}
