@@ -1,44 +1,45 @@
-import {TNashKey, TCombKey, LEVELS, PHASES} from 'src/_nash/consts';
+import {TNashKey, TCombKey} from 'src/_nash/consts';
 
+/** Интерфейс базовых данных узла */
+export interface IBaseNashNodeData {
+    count: number;
+    wins: number;
+}
+
+/** Интерфейс данных корневого узла чарта */
 export interface INashChartMapData {
     count: number;
 }
 
-export interface IBaseNashElementData {
-    count: number;
-    wins: number;
-}
-
-export interface INashElementData extends IBaseNashElementData {
+/** Интерфейс данных элемента чарта */
+export interface INashElementData extends IBaseNashNodeData {
     key: TNashKey;
 }
 
-export interface IBaseCombData {
-    count: number;
-    wins: number;
-}
-
-export interface ICombData extends IBaseCombData {
+/** Интерфейс данных узла комбинации */
+export interface ICombData extends IBaseNashNodeData {
     key: TCombKey;
 }
 
-export type TCombNode = INode<ICombData>;
-
-export type TNashElementSubNodes = Record<TCombKey, TCombNode>;
-export type TNashElementNode = INodeWithSubNodes<TCombKey, TCombNode, INashElementData>;
-
-export type TNashChartMapSubNodes = Record<TNashKey, TNashElementNode>;
-export type TNashChartMapNode = INodeWithSubNodes<TNashKey, TNashElementNode, INashChartMapData>;
-
-export type TLevels = keyof typeof LEVELS;
-export type TPhases = keyof typeof PHASES;
-
-/** Интерфейс узла */
-interface INode<D = object> {
-    data: D;
+/** Интерфейс узла комбинации */
+export interface ICombNode {
+    data: ICombData;
 }
 
-/** Интерфейс узла с подузлами */
-interface INodeWithSubNodes<K extends string | number | symbol = '', N extends INode | INodeWithSubNodes = INode, D = object> extends INode<D> {
-    subNodes: Record<K, N>;
+/** Тип подузлов элемента чарта (комбинации) */
+export type TNashElementSubnodes = Record<TCombKey, ICombNode>;
+
+/** Интерфейс отдельного подузла чарта (пара) */
+export interface INashElementNode {
+    data: INashElementData;
+    subnodes: TNashElementSubnodes;
+}
+
+/** Тип подузлов чарта (пары) */
+export type TNashSubNodes = Record<TNashKey, INashElementNode>
+
+/** Интерфейс корневого узла чарта */
+export interface INashChartMapNode {
+    data: INashChartMapData;
+    subnodes: TNashSubNodes;
 }

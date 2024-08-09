@@ -1,12 +1,12 @@
 import {INashChart, IGameResult, IMeta} from 'src/_nash/interface/INashChart';
-import {TNashChartMapNode,INashElementData} from 'src/_nash/interface/INashChartMap';
+import {INashChartMapNode, INashElementData} from 'src/_nash/interface/INashChartMap';
 import {TNashKey} from 'src/_nash/consts';
 import {genNashChartMap} from 'src/_nash/helpers/genNashChartMap';
  
 /** Таблица вероятностей */
 export default class NashChart implements INashChart {
 
-    private _chartMap: TNashChartMapNode = genNashChartMap();
+    private _chartMap: INashChartMapNode = genNashChartMap();
 
     up(gameResult: Partial<IGameResult>): void {
         Object.entries(gameResult).forEach((entrie) => {
@@ -14,8 +14,8 @@ export default class NashChart implements INashChart {
             const nashKey: TNashKey = key as TNashKey;
             const { count, wins } = value;
             this._chartMap.data.count += count;
-            this._chartMap.subNodes[nashKey].data.count += count;
-            this._chartMap.subNodes[nashKey].data.wins += wins;
+            this._chartMap.subnodes[nashKey].data.count += count;
+            this._chartMap.subnodes[nashKey].data.wins += wins;
         });
     }
 
@@ -26,6 +26,6 @@ export default class NashChart implements INashChart {
     }
 
     getDataByNashKey(nashKey: TNashKey): INashElementData {
-        return this._chartMap.subNodes[nashKey].data;
+        return this._chartMap.subnodes[nashKey].data;
     }
 }

@@ -118,5 +118,5 @@
       },                                                 /* Transform paths in output .d.ts files (Include this line if you output declarations files) */
     ]
   },
-  "include": ["src/**/*", "index.ts"]                    /* Что попадет в билд */
+  "include": ["src/**/*", "index.ts", "test/**/*"]                    /* Что попадет в билд */
 }
