@@ -1,13 +1,15 @@
 import { IGameResult, getNashKeyByCards } from 'src/nash';
 import { IDeal, ICard, TCardName } from 'src/deal';
 import { TABLE_COUNT } from 'src/_oddsUtils/consts';
+import { TCombKey } from 'src/nash';
 import pokerCalc from 'poker-calc';
 
 /** Состояние игры по игракам */
 interface IPlayerCardsMap {
     [playerId: string]: {
         cards: ICard[],
-        isWin: boolean
+        isWin: boolean,
+        winningComb: TCombKey | null
     };
 }
 
@@ -31,7 +33,8 @@ export function game(params: IGameParams): Partial<IGameResult> {
     for (let playerIndex = 0; playerIndex < playerCount; playerIndex++) {
         playerCardsMap[String(playerIndex)] = {
             cards: deal.pullCount(2).cards,
-            isWin: false
+            isWin: false,
+            winningComb: null
         };
     }
     const playerCards = Object.entries(playerCardsMap)
@@ -48,9 +51,15 @@ export function game(params: IGameParams): Partial<IGameResult> {
         playerCards
     }, { compactCards: true });
     result.forEach((winner) => {
-        playerCardsMap[winner.playerId].isWin = true;
+        playerCardsMap[winner.playerId] = {
+            ...playerCardsMap[winner.playerId],
+            isWin: true,
+            winningComb: winner.hand.handInfo.type
+        };
     });
     const gameResult: IGameResult = {} as IGameResult;
+
+    // TODO Не забыть накатить winningComb !!!
     Object.entries(playerCardsMap).forEach((entrie) => {
         const value = entrie[1];
         const { isWin, cards } = value;
