@@ -7,8 +7,18 @@ class HasLinkException(Exception): pass
 TLinkName = str
 TId = int
 
+id: TId = -1
+
+def get_id() -> TId:
+    global id
+    id += 1
+    return id
+
 class Entity:
     id: TId
+    
+    def __init__(self):
+        self.id = get_id()
 
 class LINK_TYPE(Enum):
     SINGLE=1
@@ -16,9 +26,10 @@ class LINK_TYPE(Enum):
 
 class Links:
     type: LINK_TYPE
-    __links: Dict[TId, Entity] = {}
+    __links: Dict[TId, Entity]
     
     def __init__(self, type: LINK_TYPE):
+        self.__links = {}
         self.type = type
         
     def add(self, entity: Entity):
@@ -29,7 +40,10 @@ class Links:
         
 
 class Linked:
-    links: Dict[TLinkName, Links]
+    links: Dict[TLinkName, Links] = {}
+    
+    def __init__(self):
+        self.links = {}
     
     def createLinks(self,
         linkName: TLinkName,
@@ -50,7 +64,9 @@ class Linked:
         
                 
 class LinkedEntity(Linked, Entity):
-    pass
+    def __init__(self):
+        Linked.__init__(self)
+        Entity.__init__(self)
 
 
 def make_link(
@@ -62,3 +78,23 @@ def make_link(
     
     firstEntity.createLinks(linkName, secondLinkType, secondEntity)
     secondEntity.createLinks(linkName, firtstLinkType, firstEntity)
+    
+    
+# class User(LinkedEntity):
+#     pass
+
+# class UserTable(LinkedEntity):
+#     pass
+
+# userTable = UserTable()
+
+# users = [User(), User(), User()]
+
+# for user in users:
+#     make_link(
+#         'user',
+#         userTable,
+#         user,
+#         LINK_TYPE.SINGLE,
+#         LINK_TYPE.MULTY
+#     )
