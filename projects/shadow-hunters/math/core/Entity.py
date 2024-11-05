@@ -76,25 +76,25 @@ def make_link(
     firtstLinkType: LINK_TYPE,
     secondLinkType: LINK_TYPE):
     
-    firstEntity.createLinks(linkName, secondLinkType, secondEntity)
-    secondEntity.createLinks(linkName, firtstLinkType, firstEntity)
+    firstEntity.createLinks(linkName, firtstLinkType, secondEntity)
+    secondEntity.createLinks(linkName, secondLinkType, firstEntity)
     
     
-# class User(LinkedEntity):
-#     pass
+class User(LinkedEntity):
+    pass
 
-# class UserTable(LinkedEntity):
-#     pass
+class UserTable(LinkedEntity):
+    pass
 
-# userTable = UserTable()
+userTable = UserTable()
 
-# users = [User(), User(), User()]
+users = [User(), User(), User()]
 
-# for user in users:
-#     make_link(
-#         'user',
-#         userTable,
-#         user,
-#         LINK_TYPE.SINGLE,
-#         LINK_TYPE.MULTY
-#     )
+for user in users:
+    make_link(
+        'user',
+        userTable,
+        user,
+        LINK_TYPE.MULTY,
+        LINK_TYPE.SINGLE
+    )
